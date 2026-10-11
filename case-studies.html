@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#EECBD0">
+  <meta name="description" content="Product case studies by Zoya Fatima. BloodNet: the product decisions, research, trade-offs and iterations behind a predictive blood availability platform.">
+  <title>Zoya Fatima — Case Studies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EECBD0;--deep:#B5485A;--paper:#FFFDFB;--ink:#2B2626;--rose:#F6DADD;--rose2:#F3C4CC;--muted:#6F5B5F;--line:#C39EA6;--shadow:5px 5px 0 var(--ink)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body.modal-open{overflow:hidden}
+a{color:inherit}
+button{font:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid var(--deep);outline-offset:4px}
+::selection{background:var(--rose2)}
+.page{width:min(1160px,calc(100% - 36px));margin:0 auto;padding:20px 0 70px}
+.topbar{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 13px 10px 19px;margin-bottom:57px;background:rgba(255,253,251,.96);border:1.5px solid var(--ink);border-radius:999px;box-shadow:3px 3px 0 var(--ink)}
+.brand{font:400 25px 'Instrument Serif',serif;text-decoration:none}
+.nav{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.nav a{font-weight:700;font-size:12px;text-decoration:none;border:1.5px solid transparent;border-radius:999px;padding:6px 12px}
+.nav a:hover,.nav a.active{border-color:var(--ink);background:var(--rose)}
+.eyebrow,.smallcaps{font-size:11px;letter-spacing:.105em;font-weight:700;text-transform:uppercase}
+.eyebrow{display:inline-block;border:1.5px solid var(--ink);background:var(--paper);border-radius:999px;padding:6px 12px;box-shadow:2px 2px 0 var(--ink)}
+.hand{font:700 24px/1.05 'Caveat',cursive}
+.hero{display:grid;grid-template-columns:1.4fr .6fr;align-items:end;gap:45px;margin:0 0 57px}
+.hero h1{font:400 clamp(51px,7.25vw,93px)/.94 'Instrument Serif',serif;letter-spacing:-.035em;margin:16px 0 18px;max-width:890px}
+.hero h1 em{font-weight:400;color:var(--deep)}
+.hero p{font-size:17px;max-width:685px;margin:0;line-height:1.65}
+.hero-scribble{justify-self:end;align-self:center;width:min(100%,235px);padding:20px 23px 22px;border:1.5px solid var(--ink);background:var(--paper);border-radius:4px 7px 24px 6px;transform:rotate(-4deg);box-shadow:var(--shadow)}
+.hero-scribble .hand{display:block;font-size:31px}.hero-scribble small{font-size:11px;font-weight:600;line-height:1.5;display:block;margin-top:9px}.scribble-star{display:block;text-align:right;font-size:27px;color:var(--deep);line-height:1}
+.section-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:20px}
+.section-heading h2{font:400 clamp(35px,5vw,54px)/1 'Instrument Serif',serif;margin:0}
+.section-heading .hand{font-size:22px;color:var(--deep);transform:rotate(-3deg);white-space:nowrap}
+.featured{position:relative;background:var(--paper);border:1.5px solid var(--ink);border-radius:9px 9px 29px 9px;box-shadow:var(--shadow);padding:37px 39px 32px;overflow:hidden}
+.featured:before{content:'01';font:400 150px/.8 'Instrument Serif',serif;color:var(--rose);position:absolute;right:23px;top:10px;pointer-events:none}
+.feature-label{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:20px;position:relative}
+.flag{font-size:11px;line-height:1.2;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--rose);padding:6px 10px;border:1.4px solid var(--ink);border-radius:999px}
+.mini-copy{color:var(--muted);font-size:12px;font-weight:600}
+.featured-grid{display:grid;grid-template-columns:minmax(0,1.24fr) minmax(260px,.76fr);gap:40px;position:relative}
+.featured h3{font:400 clamp(53px,6vw,78px)/.98 'Instrument Serif',serif;letter-spacing:-.035em;margin:5px 0 17px}
+.featured h3 span{color:var(--deep)}
+.featured-lead{font-size:16px;line-height:1.7;max-width:660px;margin:0}
+.decision-strip{margin:30px 0 0;padding:0;display:flex;align-items:center;flex-wrap:wrap;gap:7px;list-style:none}
+.decision-strip li{background:var(--rose);border:1px solid #D9ADB5;border-radius:6px;padding:8px 10px;font-size:11px;font-weight:700}
+.decision-strip .join{background:none;border:0;padding:2px;color:var(--deep);font-size:21px}
+.note-panel{position:relative;align-self:center;background:var(--rose);border:1.5px solid var(--ink);padding:27px 23px 23px;border-radius:4px 8px 21px 6px;transform:rotate(1.3deg)}
+.note-panel:before{content:'';position:absolute;top:-11px;left:45%;width:72px;height:17px;background:rgba(255,255,255,.78);border:1px solid #E7CED0;transform:rotate(-5deg)}
+.note-panel .hand{display:block;font-size:30px;margin-bottom:14px}
+.note-panel ul{padding:0;margin:0;list-style:none}
+.note-panel li{padding:10px 0;border-top:1px dashed #C99FA8;font-size:13px;line-height:1.45}
+.note-panel li b{font-weight:700}
+.feature-footer{display:flex;align-items:end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:30px;border-top:1px solid #DBC9CA;padding-top:23px;position:relative}
+.metrics{display:flex;align-items:flex-start;gap:28px;flex-wrap:wrap}
+.metric strong{font:400 31px/1 'Instrument Serif',serif;display:block}.metric span{display:block;margin-top:5px;font-size:11px;color:var(--muted);max-width:130px;line-height:1.35}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:9px}
+.primary-btn,.secondary-btn,.link-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:43px;padding:10px 16px;border:1.5px solid var(--ink);border-radius:999px;text-decoration:none;font:700 12px/1.3 'DM Sans',sans-serif;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.primary-btn{background:var(--deep);color:#fff;border-color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.secondary-btn{background:var(--paper)}
+.primary-btn:hover,.secondary-btn:hover{transform:translate(-1px,-2px);box-shadow:4px 5px 0 var(--ink)}
+.other-heading{margin-top:76px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.idea{position:relative;overflow:hidden;min-height:244px;padding:26px;background:var(--paper);border:1.5px solid var(--ink);border-radius:8px 8px 22px 8px;box-shadow:var(--shadow)}
+.idea.wide{grid-column:1/-1;min-height:210px}.idea.pink{background:var(--rose)}
+.idea .case-no{position:absolute;right:17px;top:0;font:400 74px/1 'Instrument Serif',serif;opacity:.10}
+.idea h3{max-width:90%;font:400 31px/1.08 'Instrument Serif',serif;letter-spacing:-.01em;margin:15px 0 12px}
+.idea p{margin:0;max-width:610px;font-size:13px;line-height:1.65}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
+.tag{display:inline-block;padding:5px 9px;border:1px solid var(--ink);border-radius:999px;background:var(--paper);font-size:10px;font-weight:700}
+.footer{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:65px;border-top:1.5px solid var(--ink);padding-top:18px}.footer .hand{font-size:23px}
+/* Long-form, accessible dialog */
+.story-dialog{position:fixed;inset:0;margin:auto;width:min(1090px,calc(100vw - 42px));height:min(92dvh,950px);max-height:none;max-width:none;padding:0;border:1.5px solid var(--ink);border-radius:17px;background:var(--paper);color:var(--ink);box-shadow:11px 11px 0 rgba(43,38,38,.48);overflow:hidden}
+.story-dialog::backdrop{background:rgba(43,28,33,.68);backdrop-filter:blur(4px)}
+.story-dialog[open]{display:flex;flex-direction:column}
+.dialog-top{z-index:5;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-shrink:0;border-bottom:1.5px solid var(--ink);padding:12px 18px;background:var(--paper)}
+.dialog-brand{font:400 26px 'Instrument Serif',serif;letter-spacing:-.02em}.dialog-brand span{font:700 10px 'DM Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);margin-left:13px;vertical-align:middle}
+.close-btn{width:38px;height:38px;flex-shrink:0;border:1.5px solid var(--ink);border-radius:50%;background:var(--rose);font-size:25px;line-height:1;cursor:pointer}
+.close-btn:hover{background:var(--rose2)}
+.story-scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;scroll-behavior:smooth}
+.story-columns{display:grid;grid-template-columns:210px minmax(0,1fr);align-items:start}
+.story-aside{position:sticky;top:0;padding:26px 16px 30px 20px;max-height:calc(92dvh - 68px);overflow:auto}
+.aside-label{font:700 10px 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+.story-menu{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.story-menu a{display:block;padding:8px 11px;border-radius:7px;font-size:11px;font-weight:700;line-height:1.3;text-decoration:none;color:var(--muted);border-left:3px solid transparent}
+.story-menu a:hover,.story-menu a.is-active{background:var(--rose);border-left-color:var(--deep);color:var(--ink)}
+.aside-note{padding:14px 12px;margin-top:25px;background:var(--rose);transform:rotate(-2deg);border:1px solid var(--line);border-radius:5px}.aside-note .hand{font-size:21px}.aside-note small{display:block;font-size:10px;line-height:1.5;margin-top:6px}
+.story-article{border-left:1px solid #E8D7D9;max-width:100%;padding:0 47px 76px 43px}
+.story-cover{padding:58px 0 48px;border-bottom:1.5px solid var(--ink)}
+.cover-flags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:25px}.cover-flags span{padding:6px 10px;background:var(--rose);border-radius:99px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.story-cover h1{font:400 clamp(53px,6vw,80px)/.95 'Instrument Serif',serif;letter-spacing:-.04em;margin:0 0 24px;max-width:800px}.story-cover h1 em{color:var(--deep);font-weight:400}
+.story-cover .summary{font-size:17px;line-height:1.75;margin:0;max-width:740px}
+.cover-meta{display:flex;gap:18px;flex-wrap:wrap;padding:22px 0 0;margin-top:26px;border-top:1px solid #DFC9CD;color:var(--muted);font-size:11px;font-weight:700}
+.cover-visual{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:30px}.cover-visual span{padding:8px 12px;border:1.5px solid var(--ink);border-radius:7px;font-size:11px;font-weight:700;background:var(--rose)}.cover-visual i{font-size:20px;color:var(--deep);font-style:normal}
+.chapter{padding:54px 0 51px;border-bottom:1px solid #E4CED2;scroll-margin-top:24px}
+.chapter:last-of-type{border:0}
+.chapter-id{display:inline-block;margin-bottom:10px;font:700 13px 'Caveat',cursive;color:var(--deep)}
+.chapter h2{font:400 clamp(36px,4.4vw,51px)/1.03 'Instrument Serif',serif;letter-spacing:-.023em;margin:0 0 21px}
+.chapter h3{font:400 28px/1.1 'Instrument Serif',serif;margin:27px 0 12px}
+.chapter p{font-size:14px;line-height:1.85;margin:0 0 16px}
+.chapter .intro{font-size:16px;line-height:1.8}
+.chapter strong{font-weight:700}
+.chapter ul:not(.choice-list){padding-left:19px;margin:0 0 17px}.chapter li{margin:9px 0;font-size:13px;line-height:1.7}
+.quote{padding:21px 25px;margin:25px 0;background:var(--rose);border-left:4px solid var(--deep);border-radius:0 8px 15px 0;font:400 clamp(23px,3vw,30px)/1.26 'Instrument Serif',serif}
+.marker{background:linear-gradient(transparent 70%,var(--rose2) 0)}
+.twocol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0}
+.explain-card{padding:19px;background:#fff;border:1px solid #D8B5BD;border-radius:8px}
+.explain-card h4{font:700 18px 'Caveat',cursive;margin:0 0 7px}.explain-card p{font-size:12px;line-height:1.7;margin:0}
+.explain-card.chosen{background:var(--rose)}
+.flowchart{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;margin:26px 0}.flowchart .node{flex:1 1 110px;min-width:105px;border:1.5px solid var(--ink);border-radius:7px;background:#fff;padding:13px 11px;font-size:11px;font-weight:700;line-height:1.45;text-align:center}.flowchart .arr{align-self:center;font-size:21px;color:var(--deep)}
+.fact-note{font-size:11px!important;color:var(--muted);line-height:1.7!important;margin-top:7px!important}
+.choice-list{padding:0;margin:21px 0 0;list-style:none}.choice-list>li{margin:0;padding:15px 0;border-top:1px solid #E3CDD0}.choice-list b{font-size:13px}.choice-list span{display:block;font-size:12px;color:var(--muted);line-height:1.65;margin-top:5px}
+.scope-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:25px 0}.scope-col{border:1.5px solid var(--ink);border-radius:8px;padding:17px 15px;background:#fff}.scope-col:nth-child(2){background:var(--rose)}.scope-col h4{margin:0 0 11px;font:400 24px 'Instrument Serif',serif}.scope-col ul{padding-left:16px!important;margin:0!important}.scope-col li{font-size:11px!important;line-height:1.5!important;margin:7px 0!important}
+.road{margin:23px 0}.road-item{display:grid;grid-template-columns:100px 1fr;gap:16px;padding:18px 0;border-top:1px solid #E3CDD0}.road-item .road-label{font:700 22px 'Caveat',cursive;color:var(--deep);line-height:1.2}.road-item h4{font-size:13px;margin:0 0 5px}.road-item p{font-size:12px;line-height:1.7;margin:0}
+.matrix{width:100%;border-collapse:collapse;margin:25px 0 9px;font-size:12px;line-height:1.55}.matrix th{text-align:left;background:var(--rose);font-size:11px;padding:11px 9px;border-bottom:1.5px solid var(--ink)}.matrix td{padding:12px 9px;vertical-align:top;border-bottom:1px solid #E8D1D5}.matrix th:first-child{width:30%}
+.signal-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:23px 0}.signal{background:var(--rose);border:1px solid #CF9BA6;border-radius:6px;padding:16px}.signal b{display:block;font:400 30px 'Instrument Serif',serif;line-height:1}.signal small{display:block;margin-top:8px;font-size:11px;line-height:1.5}
+.timeline{list-style:none!important;margin:25px 0!important;padding:0 0 0 20px!important;border-left:2px dashed var(--line)}.timeline li{position:relative;margin:0!important;padding:0 0 24px 20px;font-size:12px!important}.timeline li:before{content:'';position:absolute;left:-27px;top:5px;width:11px;height:11px;border:2px solid var(--deep);border-radius:50%;background:var(--paper)}.timeline strong{display:block;font-size:13px;margin-bottom:4px}.timeline small{font-size:11px;color:var(--muted)}
+.callout{padding:17px 19px;margin:22px 0;border:1px dashed var(--deep);border-radius:8px;background:var(--paper);font-size:12px;line-height:1.7}
+.story-end{margin:32px 0 0;padding:27px;background:var(--rose);border-radius:8px;border:1.5px solid var(--ink)}.story-end .hand{font-size:30px;display:block;margin-bottom:11px}.story-end p{font-size:13px;line-height:1.7}.story-end .actions{margin-top:17px}
+@media(max-width:900px){.hero{grid-template-columns:1fr;gap:23px}.hero-scribble{justify-self:start;width:250px}.featured-grid{grid-template-columns:1fr}.note-panel{max-width:520px;transform:rotate(.4deg)}.story-columns{grid-template-columns:174px minmax(0,1fr)}.story-aside{padding:20px 10px}.story-article{padding:0 28px 52px}.scope-grid{grid-template-columns:1fr 1fr}.scope-col:last-child{grid-column:1/-1}}
+@media(max-width:650px){.page{width:calc(100% - 20px);padding:11px 0 40px}.topbar{padding:11px 13px;border-radius:18px;align-items:flex-start;flex-direction:column;gap:7px;margin-bottom:38px}.brand{font-size:24px}.nav{width:100%;justify-content:flex-start;gap:2px}.nav a{font-size:11px;padding:6px 9px}.hero{margin-bottom:44px}.hero h1{font-size:clamp(46px,11vw,66px)}.hero p{font-size:14px}.hero-scribble{padding:12px 16px}.hero-scribble .hand{font-size:23px}.hero-scribble small{font-size:10px}.section-heading{align-items:flex-start}.section-heading h2{font-size:38px}.section-heading .hand{font-size:17px;white-space:normal;text-align:right}.featured{padding:23px 20px 22px}.featured:before{font-size:98px}.featured h3{font-size:clamp(47px,12vw,70px)}.featured-lead{font-size:14px}.decision-strip{margin-top:22px}.decision-strip li{font-size:10px}.feature-footer{align-items:stretch}.metrics{width:100%;gap:20px}.metric strong{font-size:26px}.actions{width:100%}.primary-btn,.secondary-btn{flex:1 1 auto}.grid{grid-template-columns:1fr}.idea.wide{grid-column:auto}.idea{min-height:0;padding:21px}.idea h3{font-size:29px}.other-heading{margin-top:55px}.story-dialog{inset:0;width:100vw;height:100dvh;border:0;border-radius:0;box-shadow:none}.story-scroll{scroll-padding-top:0}.dialog-top{padding:9px 14px}.dialog-brand{font-size:23px}.dialog-brand span{font-size:9px;margin-left:6px}.story-columns{display:block}.story-aside{z-index:4;position:sticky;top:0;width:100%;max-height:none;padding:8px 9px;background:var(--paper);border-bottom:1px solid #E8D7D9;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin}.aside-label,.aside-note{display:none}.story-menu{display:flex;width:max-content;gap:3px}.story-menu a{white-space:nowrap;font-size:10px;padding:8px 10px;border-left:0;border-bottom:2px solid transparent}.story-menu a.is-active,.story-menu a:hover{border-bottom-color:var(--deep);border-left-color:transparent}.story-article{border-left:0;padding:0 19px 50px}.story-cover{padding:38px 0 30px}.story-cover h1{font-size:clamp(47px,12vw,62px)}.story-cover .summary{font-size:14px}.cover-meta{gap:9px}.chapter{padding:39px 0;scroll-margin-top:65px}.chapter h2{font-size:38px}.chapter h3{font-size:25px}.chapter p{font-size:13px}.twocol,.scope-grid,.signal-row{grid-template-columns:1fr}.scope-col:last-child{grid-column:auto}.matrix{font-size:11px}.matrix td,.matrix th{padding:9px 5px}.flowchart{display:grid;grid-template-columns:1fr;gap:5px}.flowchart .node{min-width:0}.flowchart .arr{text-align:center;transform:rotate(90deg)}.road-item{grid-template-columns:81px 1fr;gap:10px}.quote{font-size:25px}.story-end{padding:20px}.footer{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){html,.story-scroll{scroll-behavior:auto}.primary-btn,.secondary-btn{transition:none}}
+
+/* Paper notes & visual storytelling */
+.hero-scribble{position:relative;justify-self:end;align-self:center;width:min(100%,245px);padding:33px 23px 24px;border-radius:3px 4px 18px 3px;background:var(--rose);transform:rotate(-3deg)}
+.hero-scribble:before{content:'';position:absolute;top:-10px;left:50%;width:79px;height:20px;transform:translateX(-50%) rotate(4deg);background:rgba(255,253,251,.73);border:1px solid rgba(43,38,38,.15)}
+.hero-scribble .hand{font-size:29px;line-height:1.04}.hero-scribble small{font-weight:500;font-size:12px;line-height:1.55}.hero-scribble .scribble-star{position:absolute;right:15px;top:12px;font-size:18px}
+.section-heading:has(+.featured) {justify-content:flex-start}
+.metrics{gap:38px}.metric span{max-width:215px}.metric strong{font-size:30px}
+.cover-meta{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr) minmax(0,1fr);gap:12px;color:var(--ink)}
+.meta-cell{padding:11px 12px;border-left:2px solid var(--line);min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.meta-key{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--deep);font-weight:700}
+.meta-val{font-size:12px;line-height:1.5;font-weight:600;overflow-wrap:anywhere}
+.shortfall-lab{margin:31px 0 12px;padding:23px;background:var(--rose);border:1.5px solid var(--ink);border-radius:9px 9px 22px 9px;box-shadow:3px 3px 0 var(--ink)}
+.lab-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.lab-sketch{font:700 20px 'Caveat',cursive;color:var(--deep);transform:rotate(-3deg)}
+.shortfall-lab h3{font:400 clamp(27px,3.7vw,35px)/1.1 'Instrument Serif',serif;margin:9px 0 6px}.shortfall-lab h3 em{color:var(--deep);font-weight:400}
+.chapter .lab-lede{margin:0 0 18px;font-size:12px;line-height:1.65}
+.lab-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid #D4ADB3;border-radius:9px;padding:11px 13px;font-size:12px;font-weight:700}
+.stock-options{display:flex;gap:5px}.stock-options button{width:35px;height:35px;border-radius:7px;background:var(--paper);border:1px solid var(--line);cursor:pointer;font-size:13px;font-weight:700}.stock-options button[aria-pressed="true"]{background:var(--deep);color:#fff;border-color:var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.stock-options button:hover{border-color:var(--ink)}
+.lab-result{margin-top:13px;padding:22px 14px 15px;border:1px solid #D4ADB3;border-radius:9px;background:var(--paper)}
+.lab-units{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:490px;margin:0 auto}
+.unit{display:grid;place-items:center;aspect-ratio:1.04;border:1.5px dashed var(--line);border-radius:9px;font:400 28px 'Instrument Serif',serif;color:var(--muted);background:repeating-linear-gradient(-45deg,#fff,#fff 8px,#F9EDF0 8px,#F9EDF0 16px);transition:background .2s,transform .2s}
+.unit.is-stock{background:var(--rose2);border:1.5px solid var(--deep);color:var(--ink)}
+.lab-legend{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:11px auto 20px;font-size:10px;font-weight:700;color:var(--muted)}
+.lab-legend span{display:flex;align-items:center;gap:7px}.lab-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}.stock-dot{background:var(--rose2);border:1px solid var(--deep)}.gap-dot{background:#fff;border:1px dashed var(--line)}
+.lab-equation{display:flex;align-items:center;justify-content:center;gap:15px;padding:12px 0;border-top:1px solid #E7D2D6}
+.lab-equation>div{text-align:center;min-width:60px}.lab-equation b{font:400 36px/1 'Instrument Serif',serif}.lab-equation small{display:block;font-size:10px;font-weight:700;color:var(--muted)}.lab-equation>span{font:400 23px 'Instrument Serif',serif;color:var(--deep)}.lab-equation .lab-answer b{color:var(--deep)}
+.chapter .lab-next{margin:9px auto 0;font-size:12px;text-align:center;max-width:540px;line-height:1.55}
+.lab-foot{display:flex;align-items:center;justify-content:space-between;gap:11px;margin-top:16px;flex-wrap:wrap}.lab-foot .hand{font-size:23px}.lab-foot small{font-size:10px;color:var(--muted)}
+.ecosystem-map{margin:27px 0 29px;padding:19px 17px;background:#FCF6F7;border:1px solid #DAB8BF;border-radius:10px}
+.eco-track{display:flex;align-items:center;gap:10px;margin:13px 0 6px}.eco-sources{display:grid;gap:5px;flex:1.1}.eco-sources span{display:block;background:#fff;border:1px solid #E0C6CC;border-radius:4px;text-align:center;font-size:10px;font-weight:700;padding:8px 5px}.eco-arrow{font:700 25px 'Caveat',cursive;color:var(--deep)}
+.eco-center{flex:1.2;min-width:0;padding:15px 8px;border:1.5px solid var(--ink);border-radius:7px;background:var(--rose2);text-align:center;box-shadow:3px 3px 0 var(--ink)}
+.eco-center b{font:400 28px 'Instrument Serif',serif}.eco-center small,.eco-end small{font-size:10px;line-height:1.45;display:block}.eco-end{flex:.9;padding:13px 9px;border:1px solid var(--ink);border-radius:7px;background:#fff;text-align:center}.eco-end b{font-size:12px}
+.chapter .ecosystem-map>p{margin:12px 0 0;font-size:11px;color:var(--muted);text-align:center}
+.question-evolution{padding:19px;background:var(--rose);border:1px solid var(--line);border-radius:8px;margin:24px 0}.question-rail{display:flex;align-items:center;gap:9px;margin-top:10px}.question-rail span{flex:1;font:400 21px/1.1 'Instrument Serif',serif;text-align:center;background:#fff;padding:13px 7px;border:1px solid #D9B5BD;border-radius:6px}.question-rail span:last-child{background:var(--rose2)}.question-rail b{color:var(--deep)}
+.authority-rail{display:flex;align-items:center;gap:8px;background:var(--rose);border-radius:9px;padding:15px 10px;margin:20px 0}.authority-rail>div{flex:1;display:grid;justify-items:center;gap:3px;min-width:0;padding:11px 5px;border:1px solid #DDB6BF;background:#fff;border-radius:8px;text-align:center}.authority-rail .authority-human{background:var(--rose2);border-color:var(--deep)}.authority-rail>span{font-size:20px;color:var(--deep)}.authority-symbol{font:400 25px 'Instrument Serif',serif;color:var(--deep)}.authority-rail b{font-size:11px}.authority-rail small{font-size:10px;line-height:1.3;color:var(--muted)}
+.ux-sketches{display:grid;grid-template-columns:1fr auto 1fr;gap:11px;align-items:center;margin:25px 0}.ux-screen{border:1px solid #DDBAC0;padding:13px;background:#fff;border-radius:10px}.ux-screen>.smallcaps{font-size:9px;letter-spacing:.06em}.ux-screen>small{display:block;margin-top:7px;font:700 17px 'Caveat',cursive;color:var(--deep);text-align:center}.ux-swap{font:700 30px 'Caveat',cursive;color:var(--deep)}
+.ux-window{height:160px;margin-top:8px;border:1px solid var(--ink);border-radius:7px;overflow:hidden;background:#FCF5F6}.ux-bar{display:flex;gap:3px;padding:6px 8px;border-bottom:1px solid #E3C6CA;background:var(--rose)}.ux-bar i{width:5px;height:5px;border:1px solid var(--line);border-radius:50%;background:#fff}.ux-login{display:grid;justify-items:center;gap:8px;padding:16px 14px}.ux-logo{font:400 22px 'Instrument Serif',serif}.ux-line{height:9px;width:75%;border:1px solid #E1C9CD;background:#fff;border-radius:4px}.ux-line:nth-of-type(3){width:65%}.ux-submit{background:var(--deep);color:#fff;border-radius:30px;padding:5px 19px;font-size:9px;font-weight:700}.ux-dashboard{padding:10px}.ux-dashboard>b{font:400 20px 'Instrument Serif',serif}.ux-bars{height:63px;display:flex;align-items:end;gap:8px;margin-top:4px}.ux-bars span{flex:1;background:var(--rose2);height:60%;border:1px solid var(--line);border-bottom:0;border-radius:3px 3px 0 0}.ux-bars span:nth-child(2){height:90%;background:var(--deep)}.ux-bars span:nth-child(3){height:42%}.ux-mini{display:flex;justify-content:space-around;font-size:8px;font-weight:700;color:var(--muted)}.ux-explainer{font-size:9px;font-weight:700;margin-top:7px;color:var(--deep)}
+.idea{display:flex;flex-direction:column;align-items:flex-start}.idea .tag-row{margin-top:auto;padding-top:18px}.idea-open{border:0;background:none;border-bottom:2px solid var(--deep);padding:4px 0;margin-top:14px;cursor:pointer;font:700 12px 'DM Sans',sans-serif}.idea-open:hover{color:var(--deep)}
+.idea-dialog{position:fixed;inset:0;margin:auto;width:min(720px,calc(100vw - 34px));height:min(86dvh,790px);max-width:none;max-height:none;padding:0;border:1.5px solid var(--ink);border-radius:15px;background:var(--paper);box-shadow:9px 9px 0 rgba(43,38,38,.45);overflow:hidden;color:var(--ink)}
+.idea-dialog::backdrop{background:rgba(43,28,33,.63);backdrop-filter:blur(3px)}.idea-dialog[open]{display:flex;flex-direction:column}.idea-dialog-scroll{overflow-y:auto;padding:35px 42px 40px;overscroll-behavior:contain}
+.idea-dialog h2{font:400 clamp(39px,5.5vw,62px)/.99 'Instrument Serif',serif;letter-spacing:-.03em;margin:19px 0}.idea-dialog h2 em{font-weight:400;color:var(--deep)}.idea-intro{font-size:15px;line-height:1.75}
+.thought-sketch{border:1px solid #D8B3BB;background:var(--rose);border-radius:10px;padding:21px;margin:25px 0}.query-cloud,.mode-stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.query-cloud span,.mode-stack>span{padding:10px 12px;border:1.3px solid var(--ink);border-radius:99px;font-size:11px;font-weight:700;background:#fff}.query-cloud span:first-child,.mode-stack span:first-child{background:var(--rose2)}.thought-arrow{text-align:center;font-size:24px;color:var(--deep);margin:5px}.thought-output{padding:12px;text-align:center;background:#fff;border:1px solid #D8B3BB;border-radius:8px;font-size:13px;font-weight:700}.thought-output span{color:var(--deep)}.mode-stack small{display:block;font-size:10px;color:var(--muted);font-weight:500}
+.trajectory{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:16px}.trajectory>div{flex:1;padding:13px 8px;background:#fff;border:1px solid #D8B3BB;border-radius:7px;text-align:center}.trajectory b{font-size:12px;display:block}.trajectory small{font-size:10px;line-height:1.4;display:block;margin-top:7px}.trajectory>span{font-size:20px;color:var(--deep)}
+.thinking-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.thinking-grid>div{padding:16px;border:1px solid #E0C1C6;border-radius:8px;background:#fff}.thinking-grid>div>span{color:var(--deep);font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}.thinking-grid p{font-size:12px;line-height:1.65;margin:8px 0 0}.idea-footnote{font-size:11px;line-height:1.55;color:var(--muted);margin:20px 0 0}
+.road-item h4{text-decoration:line-through;text-decoration-color:#D7A4AD;text-decoration-thickness:1px}.road-item p{margin-top:9px;padding:11px 14px;border-left:3px solid var(--deep);background:#FCF4F5;border-radius:0 7px 7px 0}
+@media(max-width:900px){.cover-meta{grid-template-columns:1.25fr 1fr}.meta-cell:last-child{grid-column:1/-1}}
+@media(max-width:650px){.other-heading{display:block}.other-heading .hand{display:block;text-align:right;margin-top:7px;white-space:normal;font-size:19px}.hero-scribble{width:min(80%,275px);justify-self:start;transform:rotate(-2deg);padding:29px 22px 20px}.cover-meta{grid-template-columns:1fr;gap:7px}.meta-cell:last-child{grid-column:auto}.shortfall-lab{padding:17px 12px}.stock-options{width:100%;justify-content:space-between}.stock-options button{width:19%;max-width:43px}.lab-units{gap:6px}.lab-equation{gap:10px}.lab-equation b{font-size:30px}.lab-legend{gap:9px}.lab-foot .hand{font-size:20px}.eco-track{display:grid;grid-template-columns:1fr;justify-items:stretch}.eco-arrow{text-align:center;transform:rotate(90deg);font-size:22px}.eco-sources{grid-template-columns:repeat(3,1fr)}.eco-sources span{font-size:9px;padding:9px 3px}.question-rail{flex-direction:column}.question-rail span{width:100%}.question-rail b{transform:rotate(90deg)}.authority-rail{gap:4px;padding:9px 5px}.authority-rail>div{padding:9px 3px}.authority-rail b{font-size:9px}.authority-rail small{font-size:8px}.authority-rail>span{font-size:15px}.ux-sketches{grid-template-columns:1fr;gap:5px}.ux-swap{text-align:center;transform:rotate(90deg)}.ux-window{height:159px}.idea-dialog{inset:0;width:100vw;height:100dvh;border-radius:0;border:0;box-shadow:none}.idea-dialog-scroll{padding:27px 18px 45px}.thinking-grid{grid-template-columns:1fr}.trajectory{gap:4px}.trajectory>div{padding:10px 5px}.trajectory b{font-size:10px}.trajectory small{font-size:9px}.idea-dialog h2{font-size:45px}}
+
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <a class="brand" href="index.html">Zoya.</a>
+    <nav class="nav" aria-label="Portfolio">
+      <a href="index.html">Desk</a>
+      <a href="work-rewritten-v5.html">Work</a>
+      <a href="case-studies.html" class="active" aria-current="page">Case Studies</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <span class="eyebrow">case studies / decisions, not just deliverables</span>
+        <h1 id="page-title">Problems I couldn't <em>leave alone.</em></h1>
+        <p>Sometimes the most interesting part of a product is what you choose to build. Sometimes it's everything you choose <em>not</em> to. Here's a little of both.</p>
+      </div>
+      <aside class="hero-scribble" aria-label="A sticky note about the case studies">
+        <span class="scribble-star" aria-hidden="true">✳</span>
+        <span class="hand">The interesting bits happen between idea &amp; launch.</span>
+        <small>Open the notes for the questions, plot twists, rabbit holes and decisions behind each product.</small>
+      </aside>
+    </section>
+
+    <section aria-labelledby="featured-heading">
+      <div class="section-heading"><h2 id="featured-heading">The featured story</h2></div>
+      <article class="featured" id="bloodnet">
+        <div class="feature-label"><span class="flag">01 / shipped 0→1</span><span class="mini-copy">AI + healthcare operations · Google Patchamomma 2026</span></div>
+        <div class="featured-grid">
+          <div>
+            <h3>Blood<span>Net.</span></h3>
+            <p class="featured-lead">It started with a seemingly simple idea: rank the donors most likely to help in an emergency. It ended up asking a much bigger product question: <strong>how do hospitals, blood banks, inventory, donors, and regional teams make one coordinated decision?</strong></p>
+            <ul class="decision-strip" aria-label="The evolution of the idea">
+              <li>Donor ranking</li><li class="join" aria-hidden="true">→</li><li>Supply + shortfall</li><li class="join" aria-hidden="true">→</li><li>Human-approved action</li><li class="join" aria-hidden="true">→</li><li>Predictive response</li>
+            </ul>
+          </div>
+          <aside class="note-panel">
+            <span class="hand">The story behind the build...</span>
+            <ul>
+              <li><b>The gap:</b> finding a possible match isn't the same as fulfilling a request.</li>
+              <li><b>The bet:</b> coordinate supply, prediction, outreach, and action as one loop.</li>
+              <li><b>The trade-off:</b> more automation wasn't always the better product choice.</li>
+              <li><b>The pivot:</b> the first experience had to explain the system before login.</li>
+            </ul>
+          </aside>
+        </div>
+        <div class="feature-footer">
+          <div class="metrics" aria-label="Project signals">
+            <div class="metric"><strong>#36</strong><span>out of ~3K initially shortlisted · Google Patchamomma 2026</span></div>
+            <div class="metric"><strong>~515ms</strong><span>cloud ranking p95 / 50k donor pool</span></div>
+          </div>
+          <div class="actions"><a class="secondary-btn" href="https://bloodnet-app.web.app/" target="_blank" rel="noopener noreferrer">Explore the demo ↗</a><button class="primary-btn" id="open-bloodnet" type="button" aria-haspopup="dialog" aria-controls="bloodnet-story">Read the full story <span aria-hidden="true">↗</span></button></div>
+        </div>
+      </article>
+    </section>
+
+    <section aria-labelledby="other-heading">
+      <div class="section-heading other-heading"><h2 id="other-heading">Elsewhere in the notebook</h2><span class="hand">ideas I'm pulling apart</span></div>
+      <div class="grid">
+        <article class="idea"><span class="case-no" aria-hidden="true">02</span><span class="smallcaps">Exploratory idea · Google Maps</span><h3>Maps knows where I'm going. Does it know why?</h3><p>Search assumes I know the place. Discovery assumes I know the category. What about the moments when I know the mood or occasion, but not the destination?</p><div class="tag-row"><span class="tag">discovery</span><span class="tag">intent</span><span class="tag">ranking</span></div><button type="button" class="idea-open" data-open-idea="maps-dialog" aria-haspopup="dialog">Open the thinking <span aria-hidden="true">↗</span></button></article>
+        <article class="idea pink"><span class="case-no" aria-hidden="true">03</span><span class="smallcaps">Exploratory idea · LinkedIn</span><h3>What if profiles showed trajectories instead of trophies?</h3><p>Job titles and outcomes tell only part of the story. How might a professional profile show experiments, evolving interests and the direction someone is growing in?</p><div class="tag-row"><span class="tag">identity</span><span class="tag">career journeys</span><span class="tag">signals</span></div><button type="button" class="idea-open" data-open-idea="linkedin-dialog" aria-haspopup="dialog">Open the thinking <span aria-hidden="true">↗</span></button></article>
+        <article class="idea wide"><span class="case-no" aria-hidden="true">04</span><span class="smallcaps">Exploratory idea · AI collaboration</span><h3>What if the best next AI action wasn't always an answer?</h3><p>Brainstorming, critique, decision-making, and execution need different kinds of collaboration. Could a lightweight interaction mode help an assistant know whether to explore, challenge, decide, or act—without another crowded settings panel?</p><div class="tag-row"><span class="tag">AI UX</span><span class="tag">interaction design</span><span class="tag">trust</span></div><button type="button" class="idea-open" data-open-idea="ai-dialog" aria-haspopup="dialog">Open the thinking <span aria-hidden="true">↗</span></button></article>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><span class="hand">still figuring things out. on purpose.</span><a href="work-rewritten-v5.html" class="secondary-btn">← back to work</a></footer>
+</div>
+
+
+<!-- Exploratory concepts: working hypotheses, not shipped product claims. -->
+<dialog id="maps-dialog" class="idea-dialog" aria-labelledby="maps-title">
+  <div class="dialog-top"><div class="dialog-brand">Field notes<span>02 / exploratory concept</span></div><button class="close-btn" data-close-idea aria-label="Close Maps concept">×</button></div>
+  <div class="idea-dialog-scroll"><span class="eyebrow">Google Maps / discovery</span><h2 id="maps-title">What if you could search for <em>the feeling?</em></h2><p class="idea-intro">Sometimes the destination is unknown but the intent is clear. Instead of making people choose a category first, what if discovery started with the occasion?</p>
+    <div class="thought-sketch" aria-label="Example intent-first search"><span class="smallcaps">A possible interaction</span><div class="query-cloud"><span>quiet place to read</span><span>somewhere for a first date</span><span>45 minutes to kill</span></div><div class="thought-arrow">↓</div><div class="thought-output">Intent <span>→</span> suitable categories <span>→</span> ranked places</div></div>
+    <div class="thinking-grid"><div><span>01 / Observation</span><p>Place search works best when someone knows what they want to find. Discovery can start earlier than that.</p></div><div><span>02 / The bet</span><p>A lightweight intent layer might shorten the distance between “I know the vibe” and a useful shortlist.</p></div><div><span>03 / Not the plan</span><p>Don't invent an entirely separate maps product or turn every search into a long questionnaire.</p></div><div><span>04 / What I'd test</span><p>Can people reach a satisfying place faster than with category-led search, without losing trust in the ranking?</p></div></div><p class="idea-footnote">An early product hypothesis, not a researched or shipped feature.</p>
+  </div>
+</dialog>
+<dialog id="linkedin-dialog" class="idea-dialog" aria-labelledby="linkedin-title">
+  <div class="dialog-top"><div class="dialog-brand">Field notes<span>03 / exploratory concept</span></div><button class="close-btn" data-close-idea aria-label="Close LinkedIn concept">×</button></div>
+  <div class="idea-dialog-scroll"><span class="eyebrow">LinkedIn / career identity</span><h2 id="linkedin-title">Careers aren't just a list of <em>trophies.</em></h2><p class="idea-intro">A profile captures milestones well. It is harder to see the exploration, experiments, and skills that connect those milestones.</p>
+    <div class="thought-sketch"><span class="smallcaps">A possible profile layer</span><div class="trajectory"><div><b>Explored</b><small>New domains, questions</small></div><span>↗</span><div><b>Practiced</b><small>Projects, experiments</small></div><span>↗</span><div><b>Growing toward</b><small>Direction, not just title</small></div></div></div>
+    <div class="thinking-grid"><div><span>01 / Observation</span><p>Polished outcomes rarely explain how a person got there or what they're curious about next.</p></div><div><span>02 / The bet</span><p>A voluntary journey layer could make an evolving professional direction easier to understand.</p></div><div><span>03 / Not the plan</span><p>A public performance score or a feed that pressures everyone to showcase constant growth.</p></div><div><span>04 / What I'd test</span><p>Does the extra context help people make a more meaningful connection, or just add profile clutter?</p></div></div><p class="idea-footnote">An early product hypothesis, not a researched or shipped feature.</p>
+  </div>
+</dialog>
+<dialog id="ai-dialog" class="idea-dialog" aria-labelledby="ai-title">
+  <div class="dialog-top"><div class="dialog-brand">Field notes<span>04 / exploratory concept</span></div><button class="close-btn" data-close-idea aria-label="Close AI collaboration concept">×</button></div>
+  <div class="idea-dialog-scroll"><span class="eyebrow">AI / interaction design</span><h2 id="ai-title">An answer isn't always the <em>right next move.</em></h2><p class="idea-intro">The same assistant may need to be a thought partner, a critic, a decision aid, or an executor. Users shouldn't have to write a perfect prompt to signal the difference.</p>
+    <div class="thought-sketch"><span class="smallcaps">What changes with the task?</span><div class="mode-stack"><span>Brainstorm <small>diverge</small></span><span>Challenge <small>stress-test</small></span><span>Decide <small>compare</small></span><span>Execute <small>take action</small></span></div></div>
+    <div class="thinking-grid"><div><span>01 / Observation</span><p>One “ask → answer” pattern can hide several very different collaboration needs.</p></div><div><span>02 / The bet</span><p>Simple modes could make an assistant's next behavior more predictable without requiring prompt expertise.</p></div><div><span>03 / Not the plan</span><p>Dozens of personalities, sliders or invisible automatic switches that make behavior harder to predict.</p></div><div><span>04 / What I'd test</span><p>Whether users complete tasks with fewer corrections, and whether they understand what each mode will do.</p></div></div><p class="idea-footnote">An early product hypothesis, not a researched or shipped feature.</p>
+  </div>
+</dialog>
+
+<dialog id="bloodnet-story" class="story-dialog" aria-labelledby="story-title" aria-describedby="story-intro">
+  <div class="dialog-top"><div class="dialog-brand">BloodNet<span>the story behind the product</span></div><button type="button" class="close-btn" id="close-bloodnet" aria-label="Close BloodNet case study">×</button></div>
+  <div class="story-scroll" id="story-scroll">
+    <div class="story-columns">
+      <aside class="story-aside" aria-label="Case study chapters">
+        <p class="aside-label">On this page</p>
+        <nav aria-label="BloodNet story navigation">
+          <ul class="story-menu">
+            <li><a href="#story-start" class="is-active">The beginning</a></li>
+            <li><a href="#story-landscape">Market landscape</a></li>
+            <li><a href="#story-problem">The product bet</a></li>
+            <li><a href="#story-journey">User journey</a></li>
+            <li><a href="#story-scope">What made the MVP</a></li>
+            <li><a href="#story-decisions">Decision log</a></li>
+            <li><a href="#story-roads">Roads not taken</a></li>
+            <li><a href="#story-ai">AI + safety</a></li>
+            <li><a href="#story-weather">Blood Weather</a></li>
+            <li><a href="#story-ux">User feedback</a></li>
+            <li><a href="#story-evidence">Evidence + limits</a></li>
+            <li><a href="#story-reflection">What I'd carry forward</a></li>
+          </ul>
+        </nav>
+        <div class="aside-note"><span class="hand">The interesting bits live in the trade-offs.</span><small>Read in order, or jump to the decisions that catch your eye.</small></div>
+      </aside>
+      <article class="story-article">
+        <header class="story-cover" id="story-start">
+          <div class="cover-flags"><span>0→1 product</span><span>working MVP</span><span>decision journal</span></div>
+          <h1 id="story-title">From <em>finding donors</em> to coordinating a response.</h1>
+          <p class="summary" id="story-intro">BloodNet began as a machine-learning idea and became a product-design problem about conflicting constraints, incomplete information, medical safety, operational handoffs, and human decisions. This is the path between those two versions—not just a tour of the finished UI.</p>
+          <div class="cover-meta" aria-label="Project details">
+            <div class="meta-cell"><span class="meta-key">My role</span><span class="meta-val">Product conception, scoping, architecture, build &amp; iteration</span></div>
+            <div class="meta-cell"><span class="meta-key">Context</span><span class="meta-val">Google Patchamomma 2026</span></div>
+            <div class="meta-cell"><span class="meta-key">Stage</span><span class="meta-val">Working MVP + beta extensions</span></div>
+          </div>
+          <div class="cover-visual" aria-label="How the idea evolved"><span>Who might respond?</span><i aria-hidden="true">→</i><span>What supply can fulfil this?</span><i aria-hidden="true">→</i><span>Who can safely act?</span></div>
+        </header>
+
+        <section class="chapter" id="story-landscape">
+          <span class="chapter-id">01 / Positioning</span><h2>Before building another blood app, I had to ask what already existed.</h2>
+          <p class="intro">BloodNet wasn't meant to be a new donor directory or a replacement for blood-bank infrastructure. That distinction changed the definition of the product.</p>
+          <p>Existing systems already address meaningful parts of this space: blood-bank records, donor registries, inventory visibility, and sometimes notifications. e-RaktKosh was an important reference point in the product specification. Treating those functions as completely unsolved would have made for a weak—and misleading—product thesis.</p>
+          <p>Instead, I framed the opportunity around <strong>what happens between discovering supply and resolving a request</strong>: comparing options, calculating shortfall, deciding how many donors to contact, obtaining approval, recording what changed, and recalculating the remaining need.</p>
+          <div class="twocol">
+            <div class="explain-card"><h4>Important existing capabilities</h4><p>Blood-bank and donor records, inventory lookup, registration, and notification. These are foundations BloodNet should eventually integrate with—not claim to have invented.</p></div>
+            <div class="explain-card chosen"><h4>The space I chose to work in</h4><p>Predictive, request-aware coordination: availability → shortage → recommendation → approved action → outcomes. One decision loop rather than another isolated surface.</p></div>
+          </div>
+          <div class="ecosystem-map" aria-label="Where BloodNet sits in the ecosystem"><span class="smallcaps">Where the product fits</span><div class="eco-track"><div class="eco-sources"><span>Donor registries</span><span>Inventory systems</span><span>Bank operations</span></div><span class="eco-arrow" aria-hidden="true">→</span><div class="eco-center"><b>BloodNet</b><small>forecast · compare · recommend · recalculate</small></div><span class="eco-arrow" aria-hidden="true">→</span><div class="eco-end"><b>Authorized teams</b><small>review &amp; take action</small></div></div><p>Connect existing information into a decision—not another standalone directory.</p></div>
+          <div class="quote">The differentiator wasn't <em>finding a name on a list.</em> It was making a safer, more useful next decision.</div>
+        </section>
+
+        <section class="chapter" id="story-problem">
+          <span class="chapter-id">02 / Framing the problem</span><h2>The first idea was a ranking model. The real problem was a workflow.</h2>
+          <p class="intro">My earliest concept was bounded: given an emergency request and a pool of donors, predict who is most likely to respond successfully and contact those people first.</p>
+          <p>That is still part of BloodNet. But a high ranking score doesn't answer whether usable blood is already nearby, whether a unit has been reserved for someone else, whether it can reach the hospital in time, who is authorized to act, or what happens after the first attempt fails.</p>
+          <p>I reframed the objective from <strong>“find a compatible donor”</strong> to <strong>“improve the probability of fulfilling a specific blood request, without unnecessary mobilization or unsafe decisions.”</strong></p>
+          <div class="twocol">
+            <div class="explain-card"><h4>Initial framing</h4><p>Inputs: request + donor pool. Output: a prioritized list of likely responders. Useful, but it stops before operational execution.</p></div>
+            <div class="explain-card chosen"><h4>Expanded framing</h4><p>Inputs: request, inventory, donor context, urgency, distance, permissions. Output: a reviewable action plan, approved execution, and a continuously updated shortfall.</p></div>
+          </div>
+          <p>That shift mattered because optimizing an intermediate metric like “number of matches returned” can look impressive while failing to improve what the hospital actually needs: timely, safe fulfillment.</p>
+        </section>
+
+        <section class="chapter" id="story-journey">
+          <span class="chapter-id">03 / Experience architecture</span><h2>One request. Multiple people. A lot of handoffs.</h2>
+          <p class="intro">The user experience couldn't be designed as one person's screen. A hospital coordinator initiates the need, a bank operator reviews consequential actions, donors respond when relevant, and regional operators look ahead to emerging shortage pressure.</p>
+          <div class="flowchart" aria-label="Core BloodNet case journey"><div class="node">Hospital submits request</div><span class="arr" aria-hidden="true">→</span><div class="node">Inventory + donor analysis in parallel</div><span class="arr" aria-hidden="true">→</span><div class="node">Shortfall + proposed action</div><span class="arr" aria-hidden="true">→</span><div class="node">Human approval</div><span class="arr" aria-hidden="true">→</span><div class="node">Reserve / contact / recalculate</div></div>
+          <p>I separated the roles because they need different information and authority—not merely different dashboard colors.</p>
+          <table class="matrix"><thead><tr><th>Person</th><th>Job they need done in BloodNet</th></tr></thead><tbody>
+            <tr><td><strong>Hospital coordinator</strong></td><td>Express an urgent requirement, see what can cover it, and track what is still missing.</td></tr>
+            <tr><td><strong>Blood-bank administrator</strong></td><td>Review compatibility and availability, approve or reject inventory and outreach actions, and maintain an accountable record.</td></tr>
+            <tr><td><strong>Donor</strong></td><td>Receive a relevant opportunity and respond without being exposed to unnecessary contact.</td></tr>
+            <tr><td><strong>Regional administrator</strong></td><td>Notice emerging shortage pressure and decide whether wider awareness or mobilization is justified.</td></tr>
+            <tr><td><strong>Auditor</strong></td><td>Understand who approved what, why, and how the case changed.</td></tr>
+          </tbody></table>
+          <p>The pivotal handoff is the one between <strong>recommendation and action</strong>. Finding potential supply is read-oriented; reserving a unit or contacting someone affects the real world. Those need different controls.</p>
+          <div class="shortfall-lab" aria-labelledby="lab-title">
+            <div class="lab-heading"><span class="smallcaps">Try the decision</span><span class="lab-sketch">a little what-if experiment ↘</span></div>
+            <h3 id="lab-title">A hospital needs <em>4 units.</em> Now what?</h3>
+            <p class="lab-lede">Some supply is already on hand. Change the available inventory to see why BloodNet calculates the gap <strong>before</strong> planning donor outreach.</p>
+            <div class="lab-controls"><span id="stock-label">Compatible inventory available</span><div class="stock-options" role="group" aria-labelledby="stock-label">
+              <button type="button" data-stock="0" aria-pressed="false">0</button><button type="button" data-stock="1" aria-pressed="false">1</button><button type="button" data-stock="2" aria-pressed="true">2</button><button type="button" data-stock="3" aria-pressed="false">3</button><button type="button" data-stock="4" aria-pressed="false">4</button>
+            </div></div>
+            <div class="lab-result">
+              <div class="lab-units" role="img" aria-label="Four requested units: two potentially covered by inventory, two remaining as shortfall" id="lab-units"><span class="unit is-stock">1</span><span class="unit is-stock">2</span><span class="unit is-gap">3</span><span class="unit is-gap">4</span></div>
+              <div class="lab-legend"><span><i class="stock-dot"></i> Potential inventory</span><span><i class="gap-dot"></i> Still needed</span></div>
+              <div class="lab-equation" aria-live="polite" aria-atomic="true"><div><b>4</b><small>requested</small></div><span>−</span><div><b id="lab-stock">2</b><small>in stock</small></div><span>=</span><div class="lab-answer"><b id="lab-gap">2</b><small>unit shortfall</small></div></div>
+              <p class="lab-next" id="lab-next">Next: an authorized operator reviews the proposal to reserve 2 units. Donor outreach is sized for the remaining 2, not all 4.</p>
+            </div>
+            <div class="lab-foot"><span class="hand">check → approve → act → update ↺</span><small>Illustrative workflow, not live hospital data or a fulfillment result.</small></div>
+          </div>
+        </section>
+
+        <section class="chapter" id="story-scope">
+          <span class="chapter-id">04 / Prioritization</span><h2>The MVP wasn't a small list of features. It was one complete loop.</h2>
+          <p class="intro">The first product milestone needed to demonstrate that a request could become a decision, that a decision could become an approved action, and that the system could observe the result.</p>
+          <p>That meant prioritizing workflow integrity, not just feature breadth. Some seemingly unglamorous pieces—permissions, persistent case state, transactional inventory reservations, retries, audit events—became essential to proving the core experience.</p>
+          <div class="scope-grid">
+            <div class="scope-col"><h4>Core MVP</h4><ul><li>Structured / free-text request intake</li><li>Deterministic compatibility and eligibility</li><li>Parallel inventory + donor matching</li><li>Shortfall and donor-success ranking</li><li>Adaptive outreach recommendation</li><li>Human approval and controlled execution</li><li>Case state, outcomes, audit trail</li><li>Blood Weather foundation</li></ul></div>
+            <div class="scope-col"><h4>Built as beta</h4><ul><li>Document / PDF intake</li><li>Inventory Copilot / agent investigation</li><li>SOP retrieval foundation</li><li>FHIR / HL7-facing interoperability surfaces</li><li>Additional regional, forecasting and travel features</li></ul></div>
+            <div class="scope-col"><h4>Left for later</h4><ul><li>End-to-end physical transfer orchestration</li><li>Full interactive network graph</li><li>Live external blood-bank integrations</li><li>Full donation-drive operations</li><li>Autonomous high-impact decisions</li></ul></div>
+          </div>
+        </section>
+
+        <section class="chapter" id="story-decisions">
+          <span class="chapter-id">05 / The decision log</span><h2>The specification changed as the product question became sharper.</h2>
+          <p class="intro">These aren't retrospective storytelling pivots. Several major decisions are visible in the project's evolving specification.</p>
+          <ol class="timeline">
+            <li><strong>The starting bet: rank likely responders.</strong><small>The first mental model was an AI/ML donor-success ranking problem. It later became one component of a larger fulfillment journey.</small></li>
+            <li><strong>v1.1 — Add inventory checks in parallel with donor matching.</strong><small>Instead of assuming every request begins with recruiting donors, check nearby compatible stock at the same time and net available units out of the shortfall.</small></li>
+            <li><strong>v1.2 — Make the economics workable.</strong><small>The demo cost ceiling tightened from $300 to $250/month. A standing model endpoint was replaced with in-process Cloud Run scoring; a separate retrieval service was replaced with pgvector on the existing database.</small></li>
+            <li><strong>v1.3–1.5 — Close the action loop.</strong><small>Human-approved execution, retry-safe event processing, donor notifications, and controlled inventory mutation were promoted into demo scope. Recommendations alone were no longer enough.</small></li>
+            <li><strong>v1.6 — Clarify the real differentiation.</strong><small>BloodNet was defined as a layer complementing e-RaktKosh and existing bank systems. Donor notification was explicitly removed as a novelty claim; Gemini investigation became a controlled AI interface, not medical authority.</small></li>
+            <li><strong>Later usability iteration — Rethink the front door.</strong><small>Early feedback revealed that the login-first experience obscured the product's purpose. A public regional dashboard helped make the operating model legible before sign-in.</small></li>
+          </ol>
+          <div class="question-evolution" aria-label="How my product questions changed"><span class="smallcaps">The question kept changing</span><div class="question-rail"><span>Which model?</span><b aria-hidden="true">→</b><span>Which outcome?</span><b aria-hidden="true">→</b><span>Who can act, and when?</span></div></div>
+        </section>
+
+        <section class="chapter" id="story-roads">
+          <span class="chapter-id">06 / Roads not taken</span><h2>Not building something is a product decision, too.</h2>
+          <p class="intro">The alternative wasn't always a bad idea. Often it was a good idea at the wrong stage, or an attractive shortcut that made the outcome less trustworthy.</p>
+          <div class="road">
+            <div class="road-item"><div class="road-label">not this ↘</div><div><h4>Another standalone donor registry</h4><p><strong>Chosen:</strong> coordinate on top of existing registries and inventory sources in the long term. Rebuilding records would duplicate ecosystem infrastructure rather than prove the underserved decision loop.</p></div></div>
+            <div class="road-item"><div class="road-label">not this ↘</div><div><h4>Blast every compatible donor</h4><p><strong>Chosen:</strong> rank eligible candidates and size an outreach cohort to the actual shortfall. Contacting too few is risky; contacting too many creates fatigue and unnecessary disruption.</p></div></div>
+            <div class="road-item"><div class="road-label">not this ↘</div><div><h4>Let an AI agent approve reservations or medical eligibility</h4><p><strong>Chosen:</strong> deterministic rules, role-scoped approval, and auditability. Generative reasoning may explain a situation, but it cannot substitute for compatibility rules or an authorized human decision.</p></div></div>
+            <div class="road-item"><div class="road-label">not yet ↘</div><div><h4>Build the whole transfer logistics operation</h4><p><strong>Chosen:</strong> reservation and coordination first. Dispatch, cold-chain monitoring through transit, receipt, and reconciliation require much deeper operational integration than the MVP could honestly demonstrate.</p></div></div>
+            <div class="road-item"><div class="road-label">not yet ↘</div><div><h4>Own donation-drive planning end to end</h4><p><strong>Chosen:</strong> make shortage-driven recommendations and send approved regional awareness notifications. Venue scheduling, registrations, attendance, and blood collection operations remain future scope.</p></div></div>
+            <div class="road-item"><div class="road-label">instead ↗</div><div><h4>Separate deployed microservices and an always-on model endpoint</h4><p><strong>Chosen:</strong> logically separated services in one Cloud Run deployment and local in-process model serving. That kept the MVP easier and cheaper to operate while retaining clear component boundaries.</p></div></div>
+            <div class="road-item"><div class="road-label">not yet ↘</div><div><h4>Pretend to have live, integrated network data</h4><p><strong>Chosen:</strong> synthetic, explicitly labelled data to test the workflow and its performance. Live third-party bank integration and real-world outcome evidence must come before stronger impact claims.</p></div></div>
+          </div>
+          <div class="quote">I wasn't trying to maximize the number of impressive components. I was trying to make the core promise demonstrable.</div>
+        </section>
+
+        <section class="chapter" id="story-ai">
+          <span class="chapter-id">07 / Model boundaries</span><h2>AI where ambiguity helps. Rules where safety matters.</h2>
+          <p class="intro">The product spans several different kinds of decisions. Treating them all as the same “AI feature” would have been both less useful and harder to trust.</p>
+          <table class="matrix"><thead><tr><th>Decision</th><th>Who—or what—should make it?</th></tr></thead><tbody>
+            <tr><td><strong>What does this free-text request say?</strong></td><td>Gemini-assisted extraction, followed by typed validation and a deterministic fallback.</td></tr>
+            <tr><td><strong>Is this blood / donor eligible?</strong></td><td>Auditable deterministic compatibility and eligibility rules; not learned or inferred by a language model.</td></tr>
+            <tr><td><strong>Who is most likely to complete a donation?</strong></td><td>A request-aware LightGBM ranking model, after hard eligibility filtering.</td></tr>
+            <tr><td><strong>How many people should we contact?</strong></td><td>Probability-based cohort sizing, accounting for the remaining shortfall and response likelihood.</td></tr>
+            <tr><td><strong>Why is an intervention recommended?</strong></td><td>Constrained AI investigation over allowlisted, read-oriented tools, with provenance and redaction.</td></tr>
+            <tr><td><strong>Can we reserve / contact / change state?</strong></td><td>An authorized human approves or rejects; validated deterministic services execute only approved actions.</td></tr>
+          </tbody></table>
+          <div class="authority-rail" aria-label="How responsibility is separated"><div><span class="authority-symbol">✳</span><b>AI assists</b><small>extract &amp; explain</small></div><span aria-hidden="true">→</span><div><span class="authority-symbol">◇</span><b>Rules constrain</b><small>filter &amp; validate</small></div><span aria-hidden="true">→</span><div class="authority-human"><span class="authority-symbol">✓</span><b>Humans approve</b><small>authorize action</small></div></div>
+          <p>This separation also shaped the failure modes. If the language model fails, the core constraints remain enforceable. If two requests compete for a scarce unit, transactional reservation prevents double allocation. If events retry, deduplication and idempotency reduce the chance of repeating a consequential action.</p>
+          <p>And if a recommendation is rejected, it must not quietly mutate operational state. That is a product trust requirement before it is a technical one.</p>
+        </section>
+
+        <section class="chapter" id="story-weather">
+          <span class="chapter-id">08 / From reactive to proactive</span><h2>Blood Weather asked a different question: what if we saw the shortfall coming?</h2>
+          <p class="intro">Emergency matching responds to today's shortage. Regional forecasting explores whether operators could identify tomorrow's pressure and coordinate earlier.</p>
+          <p>Blood Weather combines demand/supply signals into short-term regional forecasts, with a baseline forecasting pipeline and a cold-start fallback. Its purpose isn't to decorate a dashboard with predictions; it's to help a regional operator decide whether a specific intervention deserves review.</p>
+          <div class="twocol">
+            <div class="explain-card"><h4>Case-specific donor swarm</h4><p>An active request has a defined shortfall. Select a relatively small, eligibility-filtered group of donors likely to help cover it.</p></div>
+            <div class="explain-card chosen"><h4>Regional donation-drive awareness</h4><p>A forecast suggests emerging shortage pressure. Prepare an approval-gated recommendation and—if approved—notify relevant hospitals, banks and eligible contactable donors.</p></div>
+          </div>
+          <p>The two systems deliberately do <strong>not</strong> share the same audience or objective. One tries to close an immediate case with minimal unnecessary outreach; the other tries to create awareness around a regional risk. Full campaign logistics are not part of this version.</p>
+          <div class="callout"><strong>The data boundary:</strong> forecasting and donor-probability models currently use synthetic or simulated histories. Real-world calibration and operational validation are future steps.</div>
+        </section>
+
+        <section class="chapter" id="story-ux">
+          <span class="chapter-id">09 / An unexpected UX problem</span><h2>The first screen didn't explain the product. The experience had to change.</h2>
+          <p class="intro">After building a role-based system, I found that getting someone inside it wasn't the same as helping them understand it.</p>
+          <p>In an early usability round, eight people struggled to understand BloodNet from the login-first experience. That feedback exposed a mismatch between the product's complexity and the way a new person encountered it: you had to commit to entering before you could understand why you would want to.</p>
+          <div class="twocol"><div class="explain-card"><h4>Before</h4><p>An authentication-led entry point assumed people already understood the actors and the coordination loop.</p></div><div class="explain-card chosen"><h4>After</h4><p>A public regional dashboard and explainer made demand, supply, forecasts, and role journeys visible without first requiring an account.</p></div></div>
+          <div class="ux-sketches" aria-label="Conceptual before and after layouts, not exact screenshots">
+            <div class="ux-screen"><span class="smallcaps">Before · sign in first</span><div class="ux-window"><div class="ux-bar"><i></i><i></i><i></i></div><div class="ux-login"><span class="ux-logo">BloodNet</span><span class="ux-line"></span><span class="ux-line"></span><span class="ux-submit">Sign in</span></div></div><small>What's behind the door?</small></div>
+            <div class="ux-swap" aria-hidden="true">→</div>
+            <div class="ux-screen"><span class="smallcaps">After · understand first</span><div class="ux-window"><div class="ux-bar"><i></i><i></i><i></i></div><div class="ux-dashboard"><b>Regional snapshot</b><div class="ux-bars"><span></span><span></span><span></span></div><div class="ux-mini"><span>Demand</span><span>Supply</span><span>Response</span></div><div class="ux-explainer">See how BloodNet works →</div></div></div><small>See the purpose before entering.</small></div>
+          </div>
+          <p>I then checked the redesigned experience with ten new users. The reported qualitative outcome was better comprehension of BloodNet's purpose. I don't have a controlled, quantified time-to-understand improvement to claim—and I don't want to turn a small usability check into a conversion statistic.</p>
+          <p>The lesson wasn't to make the landing screen prettier. It was to show <strong>why the product mattered before asking someone to enter it.</strong></p>
+        </section>
+
+        <section class="chapter" id="story-evidence">
+          <span class="chapter-id">10 / Results &amp; limits</span><h2>What I can demonstrate—and what I can't claim yet.</h2>
+          <p class="intro">I want a reader to know the difference between a working product loop, a technical benchmark, early user feedback, and real-world healthcare impact.</p>
+          <div class="signal-row"><div class="signal"><b>#36</b><small>out of ~3K initially shortlisted · Google Patchamomma 2026</small></div><div class="signal"><b>~515ms</b><small>Measured cloud p95 ranking time for a 50,000-donor pool. Target was ≤800ms.</small></div><div class="signal"><b>8 → 10</b><small>Early comprehension feedback and fresh-user follow-up; qualitative, not a statistical experiment.</small></div></div>
+          <h3>Working product evidence</h3><p>The MVP implements the core request → match → shortfall → recommendation → approve → reserve/mobilize → update flow, along with a regional forecasting path. The later beta surfaces explore document intake, AI-assisted investigation and interoperability.</p>
+          <h3>What remains unproven</h3><p>Real-world fulfillment-rate improvement, model calibration on authentic donor histories, live inventory accuracy, hospital adoption, sustained donor response, and operational impact across a real blood network. The system currently relies on synthetic data for its decision models and demo workflows, and medical/regulatory review would be needed before any clinical deployment.</p>
+          <h3>Metrics I'd prioritize next</h3>
+          <ul><li><strong>Request-to-first-actionable-match:</strong> did the system accelerate finding a useful option?</li><li><strong>Fulfillment rate and time-to-resolution:</strong> did a recommendation eventually help meet the request?</li><li><strong>Inventory coverage vs donor mobilization:</strong> did we use available supply before creating unnecessary outreach?</li><li><strong>Donor contact load and response yield:</strong> did targeting improve responsiveness without exhausting donors?</li><li><strong>Override / rejection rate:</strong> were recommendations useful and understandable enough for operators to trust?</li></ul>
+          <p class="fact-note">The performance benchmark measures ranking latency, not prediction quality or patient outcomes.</p>
+        </section>
+
+        <section class="chapter" id="story-reflection">
+          <span class="chapter-id">11 / Reflection</span><h2>The model was the entry point. The decision system became the product.</h2>
+          <p class="intro">I started by asking who might respond to a blood request. The work pushed me into questions that were less glamorous and far more consequential: what inventory can be trusted, how should incomplete supply be handled, when is outreach justified, and who has the authority to act?</p>
+          <p>Each change in the product made another dependency visible. The ranking model needed reliable data. The matching flow needed durable reservations. Reservations needed authorization. Authorization needed role-aware journeys. And the whole workflow needed an explanation people could understand before they ever signed in.</p>
+          <p>The version I would work toward next isn't “more AI.” It's <strong>better evidence</strong>: live source integrations, direct hospital/bank user research, real operational outcomes, and calibration of ranking and forecasting against real-world data. Full transfer orchestration and deeper network analysis become much more useful after those foundations exist.</p>
+          <div class="quote">The most valuable product decision wasn't adding another feature. It was redefining what problem the features were supposed to solve.</div>
+          <div class="story-end"><span class="hand">the next chapter isn't a feature list.</span><p>It's learning whether this decision loop actually makes emergency fulfillment more reliable in the world it was designed for.</p><div class="actions"><a href="https://bloodnet-app.web.app/" target="_blank" rel="noopener noreferrer" class="primary-btn">See BloodNet ↗</a><button type="button" class="secondary-btn" data-close-story>Back to case studies ↑</button></div></div>
+        </section>
+      </article>
+    </div>
+  </div>
+</dialog>
+<script>
+(() => {
+  const dialog = document.getElementById('bloodnet-story');
+  const trigger = document.getElementById('open-bloodnet');
+  const close = document.getElementById('close-bloodnet');
+  const scroller = document.getElementById('story-scroll');
+  const links = [...dialog.querySelectorAll('.story-menu a')];
+  const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const setActive = id => links.forEach(a => { const active = a.getAttribute('href') === '#' + id; a.classList.toggle('is-active',active); if(active) a.setAttribute('aria-current','location'); else a.removeAttribute('aria-current'); });
+  function openStory(){ if(dialog.open) return; dialog.showModal(); document.body.classList.add('modal-open'); scroller.scrollTop=0; setActive('story-start'); close.focus(); }
+  function closeStory(){if(dialog.open) dialog.close();}
+  trigger.addEventListener('click',openStory);
+  close.addEventListener('click',closeStory);
+  dialog.querySelectorAll('[data-close-story]').forEach(el=>el.addEventListener('click',closeStory));
+  dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');trigger.focus();});
+  dialog.addEventListener('click',e=>{if(e.target===dialog)closeStory();});
+  links.forEach(link=>link.addEventListener('click',e=>{
+    e.preventDefault(); const target=document.querySelector(link.getAttribute('href'));if(!target)return;
+    target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+    setActive(target.id);
+  }));
+  if('IntersectionObserver' in window){
+    const observer = new IntersectionObserver(entries=>{
+      if(!dialog.open)return;
+      const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+      if(visible.length)setActive(visible[0].target.id);
+    },{root:scroller,rootMargin:'-15% 0px -70% 0px',threshold:0});
+    sections.forEach(s=>observer.observe(s));
+  }
+  // Explore different inventory situations without suggesting real clinical outcomes.
+  const stockButtons=[...dialog.querySelectorAll('[data-stock]')];
+  const unitRow=dialog.querySelector('#lab-units');
+  const stockValue=dialog.querySelector('#lab-stock');
+  const gapValue=dialog.querySelector('#lab-gap');
+  const nextLine=dialog.querySelector('#lab-next');
+  function updateStock(available){
+    const gap=4-available;
+    stockButtons.forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.stock)===available)));
+    [...unitRow.children].forEach((el,i)=>{const hasStock=i<available;el.classList.toggle('is-stock',hasStock);el.classList.toggle('is-gap',!hasStock)});
+    stockValue.textContent=available;gapValue.textContent=gap;
+    unitRow.setAttribute('aria-label',`Four requested units: ${available} potentially covered by inventory, ${gap} remaining as shortfall`);
+    nextLine.textContent=gap===0 ? 'Next: an authorized operator reviews the proposal to reserve all 4 available units. No donor outreach is needed for this example.' : available===0 ? 'Next: there is no compatible stock in this example. An operator reviews a donor outreach proposal for the 4-unit shortfall.' : `Next: an authorized operator reviews the proposal to reserve ${available} unit${available===1?'':'s'}. Donor outreach is sized for the remaining ${gap}, not all 4.`;
+  }
+  stockButtons.forEach(button=>button.addEventListener('click',()=>updateStock(Number(button.dataset.stock))));
+  // All speculative cases use their own, smaller accessible pop-up.
+  const ideaDialogs=[...document.querySelectorAll('.idea-dialog')];
+  document.querySelectorAll('[data-open-idea]').forEach(button=>{
+    const target=document.getElementById(button.dataset.openIdea);
+    if(!target)return;
+    button.addEventListener('click',()=>{target.showModal();document.body.classList.add('modal-open');target.querySelector('[data-close-idea]').focus();});
+    target.addEventListener('close',()=>{document.body.classList.remove('modal-open');button.focus();});
+    target.querySelectorAll('[data-close-idea]').forEach(closeButton=>closeButton.addEventListener('click',()=>target.close()));
+    target.addEventListener('click',e=>{if(e.target===target)target.close();});
+  });
+
+  if(window.location.hash==='#bloodnet-story')openStory();
+})();
+</script>
+</body>
+</html>

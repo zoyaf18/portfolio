@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="theme-color" content="#EECBD0">
+<title>Zoya Fatima — Work</title>
+<style>html{color-scheme:light}
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Sans:wght@400;500;700&family=Instrument+Serif&display=swap');
+
+:root{
+  --bg:#EECBD0;
+  --deep:#B5485A;
+  --paper:#FFFDFB;
+  --ink:#2B2626;
+  --rose:#F6DADD;
+  --rose2:#F3C4CC;
+  --shadow:6px 6px 0 var(--ink);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font:16px/1.55 'DM Sans',system-ui,sans-serif;
+}
+a{color:inherit}
+.page{
+  width:min(1160px,calc(100% - 32px));
+  margin:0 auto;
+  padding:22px 0 72px;
+}
+.topbar{
+  position:sticky;
+  top:12px;
+  z-index:30;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:10px 12px 10px 16px;
+  margin-bottom:42px;
+  background:rgba(255,253,251,.94);
+  border:1.5px solid var(--ink);
+  border-radius:999px;
+  box-shadow:3px 3px 0 var(--ink);
+  backdrop-filter:blur(8px);
+}
+.brand{
+  font:400 23px 'Instrument Serif',serif;
+  text-decoration:none;
+}
+.nav{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.nav a{
+  font-weight:700;
+  font-size:13px;
+  text-decoration:none;
+  border:1.5px solid transparent;
+  border-radius:999px;
+  padding:6px 12px;
+}
+.nav a:hover,.nav a.active{
+  border-color:var(--ink);
+  background:#fff;
+}
+.eyebrow{
+  display:inline-block;
+  border:1.5px solid var(--ink);
+  background:var(--paper);
+  border-radius:999px;
+  padding:5px 13px;
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  box-shadow:2px 2px 0 var(--ink);
+}
+.hero{
+  display:grid;
+  grid-template-columns:minmax(0,1.4fr) minmax(240px,.6fr);
+  gap:38px;
+  align-items:end;
+  margin:16px 0 48px;
+}
+h1{
+  margin:12px 0 14px;
+  font:400 clamp(48px,7vw,92px)/.94 'Instrument Serif',serif;
+  letter-spacing:-.025em;
+}
+.hero p{
+  font-size:19px;
+  max-width:780px;
+  margin:0;
+}
+.hand{
+  font-family:'Caveat',cursive;
+  font-weight:700;
+}
+.hero-note{
+  position:relative;
+  justify-self:end;
+  width:min(100%,320px);
+  padding:22px 22px 18px;
+  background:var(--rose);
+  border:1.5px solid var(--ink);
+  border-radius:4px;
+  box-shadow:8px 8px 0 rgba(43,38,38,.92);
+  transform:rotate(-1.2deg);
+  font:700 30px/1.02 'Caveat',cursive;
+}
+.hero-note::before{
+  content:'';
+  position:absolute;
+  top:-12px;
+  left:50%;
+  transform:translateX(-50%) rotate(-2deg);
+  width:86px;
+  height:24px;
+  background:rgba(255,253,251,.75);
+  border:1px solid rgba(43,38,38,.14);
+  border-radius:3px;
+}
+.hero-note small{
+  display:block;
+  margin-top:12px;
+  font:600 13px/1.5 'DM Sans',sans-serif;
+}
+.section-title{
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-start;
+  gap:18px;
+  margin:46px 0 18px;
+}
+.section-title h2{
+  margin:0;
+  font:400 clamp(34px,5vw,58px)/1 'Instrument Serif',serif;
+  position:relative;
+}
+.section-title h2::after{
+  content:'✷';
+  display:inline-block;
+  margin-left:10px;
+  font:700 24px 'Caveat',cursive;
+  color:var(--deep);
+  transform:rotate(10deg) translateY(-2px);
+}
+.section-title .scribble{
+  font:700 23px 'Caveat',cursive;
+  transform:rotate(-3deg);
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:18px;
+}
+.card{
+  position:relative;
+  border:1.5px solid var(--ink);
+  background:var(--paper);
+  box-shadow:var(--shadow);
+  border-radius:8px 8px 22px 8px;
+  padding:24px;
+  overflow:hidden;
+}
+.card::after{
+  content:'';
+  position:absolute;
+  inset:auto 16px 12px auto;
+  width:36px;
+  height:10px;
+  border-bottom:2px dotted rgba(43,38,38,.24);
+  opacity:.5;
+}
+.card h3{
+  margin:0 0 12px;
+  font:400 34px/1 'Instrument Serif',serif;
+  position:relative;
+}
+.card h3::after{
+  content:'';
+  display:block;
+  width:72px;
+  height:8px;
+  margin-top:10px;
+  background:linear-gradient(transparent 45%, rgba(181,72,90,.22) 45%, rgba(181,72,90,.22) 80%, transparent 80%);
+  border-radius:999px;
+}
+.card p{margin:0}
+.card .meta{
+  margin-bottom:12px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  opacity:.72;
+}
+.card .meta::before{
+  content:'✦ ';
+  color:var(--deep);
+}
+.card .tagrow{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:18px;
+}
+.tag{
+  border:1.25px solid var(--ink);
+  border-radius:999px;
+  padding:5px 11px;
+  font-size:12px;
+  font-weight:700;
+  background:#fff;
+}
+.sticky{
+  background:linear-gradient(180deg,var(--rose) 0%, #f8dde2 100%);
+  transform:rotate(-.6deg);
+}
+.sticky:nth-child(even){transform:rotate(.5deg);background:var(--paper)}
+.sticky::before{content:"";position:absolute;top:10px;right:24px;width:72px;height:18px;background:rgba(255,255,255,.5);border:1px solid rgba(43,38,38,.14);transform:rotate(4deg)}
+.straight{transform:none !important}
+.metric-strip{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  margin-top:18px;
+  align-items:start;
+}
+.metric{
+  border-top:1.5px solid var(--ink);
+  padding-top:10px;
+  min-width:0;
+}
+.metric strong{
+  display:block;
+  font:400 clamp(22px,2.6vw,34px)/1.04 'Instrument Serif',serif;
+  word-break:break-word;
+  hyphens:auto;
+}
+.metric span{
+  display:block;
+  font-size:13px;
+  opacity:.78;
+  margin-top:7px;
+  line-height:1.35;
+  max-width:14ch;
+}
+.span-7{grid-column:span 7}
+.span-5{grid-column:span 5}
+.span-6{grid-column:span 6}
+.span-12{grid-column:1/-1}
+.arrow-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:18px;
+  font-weight:700;
+  text-decoration:none;
+  border-bottom:2px solid var(--deep);
+}
+.arrow-link:hover{transform:translateX(3px)}
+.tape{
+  position:absolute;
+  width:68px;
+  height:17px;
+  background:rgba(255,255,255,.58);
+  border:1px solid rgba(43,38,38,.15);
+  top:8px;
+  right:28px;
+  transform:rotate(5deg);
+}
+.process{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.step{
+  border:1.5px solid var(--ink);
+  background:var(--paper);
+  min-height:170px;
+  padding:18px;
+  border-radius:8px 8px 18px 8px;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.step b{
+  display:block;
+  font:700 26px 'Caveat',cursive;
+  margin-bottom:8px;
+}
+.step span{
+  display:inline-grid;
+  place-items:center;
+  width:30px;height:30px;
+  border:1.5px solid var(--ink);
+  border-radius:50%;
+  margin-bottom:18px;
+  font-weight:700;
+}
+.footer{
+  margin-top:64px;
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:center;
+  padding-top:18px;
+  border-top:1.5px solid var(--ink);
+}
+.footer .hand{font-size:22px;position:relative}
+.footer .hand::after{content:' ✷';color:var(--deep);font-size:20px}
+.button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--paper);
+  border:1.5px solid var(--ink);
+  border-radius:999px;
+  padding:10px 18px;
+  text-decoration:none;
+  font-weight:700;
+  line-height:1.2;
+  white-space:nowrap;
+  box-shadow:3px 3px 0 var(--ink);
+}
+.button:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+
+/* playful micro-interactions */
+.card{
+  transition:transform .22s ease,box-shadow .22s ease,border-radius .22s ease;
+}
+.card:hover{
+  transform:translate(-3px,-3px);
+  box-shadow:9px 9px 0 var(--ink);
+}
+.card.sticky:hover{
+  transform:translate(-3px,-3px) rotate(-.6deg);
+}
+.card.sticky.straight:hover{transform:translate(-3px,-3px)}
+.card h3::after{
+  transition:width .3s ease,transform .3s ease;
+}
+.card:hover h3::after{
+  width:118px;
+  transform:rotate(-1deg);
+}
+.tag{
+  transition:transform .16s ease,background .16s ease,color .16s ease,box-shadow .16s ease;
+  cursor:default;
+}
+.tag:hover{
+  transform:translateY(-2px) rotate(-1deg);
+  background:var(--deep);
+  color:var(--paper);
+  box-shadow:2px 2px 0 var(--ink);
+}
+.metric{
+  transition:transform .18s ease,border-color .18s ease;
+}
+.metric:hover{
+  transform:translateY(-2px);
+  border-color:var(--deep);
+}
+.metric strong{transition:transform .18s ease}
+.metric:hover strong{transform:translateX(2px)}
+.step{
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.step:nth-child(odd):hover{transform:translateY(-4px) rotate(-.7deg)}
+.step:nth-child(even):hover{transform:translateY(-4px) rotate(.7deg)}
+.step:hover{
+  box-shadow:7px 7px 0 var(--ink);
+  background:#fff;
+}
+.step span{transition:transform .18s ease,background .18s ease}
+.step:hover span{
+  transform:rotate(-8deg) scale(1.06);
+  background:var(--rose);
+}
+.hero-note{transition:transform .22s ease,box-shadow .22s ease}
+.hero-note:hover{
+  transform:rotate(.7deg) translateY(-3px);
+  box-shadow:10px 10px 0 rgba(43,38,38,.92);
+}
+.achievement-strip{grid-template-columns:minmax(0,340px);margin-top:20px}
+.achievement-metric{
+  border:1.5px solid var(--ink);
+  background:var(--rose);
+  border-radius:6px 6px 18px 6px;
+  padding:16px 18px;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.achievement-metric strong{font-size:32px}
+.achievement-metric .metric-title{
+  font-weight:700;
+  opacity:1;
+  max-width:none;
+  margin-top:6px;
+}
+.achievement-metric .metric-sub{
+  font-size:12px;
+  opacity:.72;
+  max-width:none;
+  margin-top:2px;
+}
+@media (hover:none){
+  .card:hover,.card.sticky:hover,.card.sticky.straight:hover,.hero-note:hover,.step:nth-child(odd):hover,.step:nth-child(even):hover{transform:none}
+}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;gap:22px}
+  .hero-note{justify-self:start;max-width:300px}
+  .span-7,.span-5,.span-6{grid-column:1/-1}
+  .process{grid-template-columns:1fr 1fr}
+  .section-title{align-items:flex-start;flex-direction:column}
+}
+@media (max-width:600px){
+  body{font-size:15px;line-height:1.5}
+  .page{width:min(100% - 18px,1160px);padding-top:14px}
+  .topbar{position:sticky;top:8px;border-radius:18px;align-items:flex-start;flex-direction:column;padding:12px 14px;margin-bottom:24px}
+  .brand{font-size:22px}
+  .nav{justify-content:flex-start;width:100%}
+  .nav a{padding:8px 12px;background:rgba(255,255,255,.55);border-color:rgba(43,38,38,.18)}
+  h1{font-size:clamp(40px,13vw,60px);line-height:.98}
+  .hero p{font-size:17px}
+  .hero{margin-bottom:30px}
+  .hero-note{max-width:100%;font-size:28px;padding:20px 18px 16px}
+  .card{padding:18px}
+  .card h3{font-size:28px;line-height:1.04}
+  .section-title{margin:34px 0 14px}
+  .section-title h2{font-size:clamp(30px,9vw,42px)}
+  .metric-strip{grid-template-columns:1fr;gap:10px}
+  .metric strong{font-size:26px}
+  .metric span{max-width:none}
+  .achievement-strip{grid-template-columns:1fr}
+  .achievement-metric strong{font-size:30px}
+  .tagrow{gap:8px}
+  .tag{font-size:11px;padding:5px 10px}
+  .process{grid-template-columns:1fr}
+  .step{min-height:auto}
+  .footer{align-items:stretch;flex-direction:column;gap:16px}
+  .footer .hand{width:100%}
+  .footer .button{align-self:center;width:auto;max-width:100%;font-size:14px;padding:10px 17px;text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <a class="brand" href="index.html">Zoya.</a>
+    <nav class="nav" aria-label="Portfolio">
+      <a href="index.html">Desk</a>
+      <a class="active" href="work-rewritten-v5.html">Work</a>
+      <a href="case-studies.html">Case Studies</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow">work / engineering × product</span>
+      <h1>Shaping AI products from the system underneath to the experience on top.</h1>
+      <p>
+        I work on enterprise AI platforms and developer tools used across teams and geographies. My role spans the full loop:
+        understanding how people work, shaping what the product should do, reasoning through technical trade-offs, building the
+        underlying capabilities, and learning from what happens once they reach users.
+      </p>
+      <p style="margin-top:12px">
+        I’m especially interested in the decisions that sit between <strong>“we can build this”</strong> and <strong>“this is worth building this way.”</strong>
+      </p>
+    </div>
+    <aside class="hero-note">
+      the code<br>matters.<br>so does the<br>judgment around<br>it. ↙
+      <small>engineering depth · product thinking · user context</small>
+    </aside>
+  </section>
+
+  <div class="section-title">
+    <h2>Selected work</h2>
+
+  </div>
+
+  <section class="grid">
+    <article class="card span-12">
+      <div class="tape"></div>
+      <div class="meta">KPIT · enterprise AI platforms &amp; developer tools</div>
+      <h3>Building AI infrastructure that teams can actually shape around their work.</h3>
+      <p>
+        I work across two company-wide AI products: an enterprise web platform that enables teams to configure and create AI agents,
+        and a developer CLI that brings AI directly into engineering workflows.
+      </p>
+      <p style="margin-top:12px">
+        The platform gives teams reusable building blocks such as configurable context, skills and human-in-the-loop controls. The CLI
+        extends that thinking into the developer workflow through pre-built and custom skills, memory and AI-assisted capabilities.
+      </p>
+      <p style="margin-top:12px">
+        My role spans <strong>engineering execution and product shaping</strong>. I work with users and client teams to understand workflow friction,
+        translate feedback into requirements, contribute to feature and backlog discussions, weigh priorities and technical complexity,
+        and collaborate with engineering, QA, DevOps and UX through implementation, validation and rollout.
+      </p>
+      <p style="margin-top:12px">
+        Because I also work hands-on with the systems, I can bring another layer into those discussions: what is technically feasible,
+        where reliability may break, what a change will cost, how users are likely to experience it, and whether the product is actually
+        ready for wider use.
+      </p>
+      <div class="metric-strip">
+        <div class="metric"><strong>~1,800</strong><span>web platform users</span></div>
+        <div class="metric"><strong>~1,200</strong><span>developer CLI users</span></div>
+        <div class="metric"><strong>~85</strong><span>client teams</span></div>
+      </div>
+      <div class="tagrow">
+        <span class="tag">AI platforms</span><span class="tag">agentic systems</span>
+        <span class="tag">developer tools</span><span class="tag">product shaping</span>
+        <span class="tag">cross-functional collaboration</span>
+      </div>
+    </article>
+
+    <article class="card sticky straight span-12">
+      <div class="meta">what I’ve learned</div>
+      <h3>A powerful capability becomes a product only when people know where it fits.</h3>
+      <p>
+        Working on enterprise AI has made me think beyond whether a model or agent can perform a task. The more interesting questions are often:
+        Where does this belong in the workflow? How much should the system decide for the user? Where should users retain control?
+        How do we know the output is good enough? What happens when cost, capability, latency and usability pull in different directions?
+      </p>
+      <p style="margin-top:12px">Those questions increasingly shape how I approach both engineering and product decisions.</p>
+    </article>
+
+    <article class="card span-6">
+      <div class="meta">model intelligence · initiative owned</div>
+      <h3>Making the default smarter, without taking control away.</h3>
+      <p>
+        As more models became available, model choice became its own product problem. Different workflows needed different levels of
+        reasoning and capability. Using the most capable model everywhere increased cost unnecessarily, while relying too heavily on
+        lighter models could affect quality on complex tasks. Expecting every user to understand the model landscape also created friction.
+      </p>
+      <p style="margin-top:12px">
+        I <strong>proposed, researched and owned the model auto-router from concept through rollout</strong>: building the case for the approach,
+        securing leadership buy-in, studying routing strategies and model behaviour, implementing the capability, and working with DevOps
+        on the changes needed to take it into production.
+      </p>
+      <p style="margin-top:12px">
+        The router uses signals such as <strong>task complexity, model capability and caching</strong> to make an intelligent default selection,
+        while users can still override the system through simpler model choices when they want more control.
+      </p>
+      <p style="margin-top:12px">
+        The work enabled higher-capability models to be used more selectively and helped reduce <strong>token cost by 36%</strong> while maintaining
+        output quality across the evaluated workflows.
+      </p>
+      <div class="metric-strip">
+        <div class="metric"><strong>36%</strong><span>lower token cost</span></div>
+        <div class="metric"><strong>default-first</strong><span>intelligent routing</span></div>
+        <div class="metric"><strong>user control</strong><span>still preserved</span></div>
+      </div>
+      <div class="tagrow">
+        <span class="tag">0→1 initiative</span><span class="tag">model routing</span>
+        <span class="tag">cost-quality trade-offs</span><span class="tag">product defaults</span><span class="tag">AI economics</span>
+      </div>
+    </article>
+
+    <article class="card span-6">
+      <div class="meta">AI quality · evaluation system</div>
+      <h3>Turning “this response looks good” into something we can actually test.</h3>
+      <p>
+        Generative AI changes what quality assurance looks like. A response can be technically valid and still be incomplete, poorly grounded,
+        inconsistent or simply not useful enough for the workflow it serves.
+      </p>
+      <p style="margin-top:12px">
+        I <strong>proposed, researched, built and owned an evaluation framework for production-grade AI outputs</strong>, combining multiple layers
+        of validation rather than relying on a single score.
+      </p>
+      <p style="margin-top:14px"><strong>Golden dataset.</strong> Representative inputs and expected behaviours create a stable regression baseline, so model, prompt or workflow changes can be retested against the same important scenarios instead of being evaluated ad hoc.</p>
+      <p style="margin-top:10px"><strong>Deterministic gates.</strong> Machine-verifiable checks cover schema and JSON validity, required fields, formatting rules, expected tool calls, prohibited output, exact workflow constraints and response completeness before subjective quality is considered.</p>
+      <p style="margin-top:10px"><strong>LLM-as-a-judge.</strong> A rubric-based evaluator scores qualitative dimensions such as relevance, instruction adherence, usefulness and overall response quality where deterministic checks are not enough.</p>
+      <p style="margin-top:10px"><strong>Continuous user feedback.</strong> Production feedback surfaces failure modes that offline evaluation can miss and helps turn real user issues into future regression cases.</p>
+      <p style="margin-top:14px">
+        Together, the system creates a loop: <strong>golden cases → deterministic checks → qualitative evaluation → production feedback → better evaluation cases.</strong>
+      </p>
+      <p style="margin-top:12px">
+        I also built automated debugging and validation agents for our internal AI tools, reducing <strong>manual debugging effort by 50%</strong>
+        and <strong>QA preparation time by 65%</strong> while improving test coverage.
+      </p>
+      <div class="tagrow">
+        <span class="tag">AI evaluation</span><span class="tag">LLM-as-a-judge</span>
+        <span class="tag">golden datasets</span><span class="tag">production quality</span><span class="tag">feedback loops</span>
+      </div>
+    </article>
+
+    <article class="card sticky span-6">
+      <div class="meta">product enablement · user adoption</div>
+      <h3>Helping users choose the right intelligence for the job.</h3>
+      <p>
+        Giving people access to multiple models is useful only if they understand when each one belongs in their workflow. I created
+        model-selection documentation and delivered demos that translated differences in model capability, behaviour and cost into
+        practical workflow decisions.
+      </p>
+      <p style="margin-top:12px">
+        Instead of explaining models as a technical catalogue, I focused on the questions users actually needed answered: What kind of task
+        am I solving? How much reasoning does it need? When does a stronger model meaningfully improve the outcome? When is a lighter model already enough?
+      </p>
+      <p style="margin-top:12px">
+        Those conversations also became product input. The questions users asked showed where model differences were unclear, which trade-offs
+        they cared about, and where better defaults, terminology or guidance could reduce unnecessary decision-making.
+      </p>
+      <p style="margin-top:12px">
+        I fed those signals back into product discussions alongside engineering constraints and usage patterns, connecting
+        <strong>user education, product design and model strategy</strong> rather than treating them as separate problems.
+      </p>
+      <div class="tagrow">
+        <span class="tag">user enablement</span><span class="tag">storytelling</span>
+        <span class="tag">AI adoption</span><span class="tag">feedback synthesis</span><span class="tag">product education</span>
+      </div>
+    </article>
+
+    <article class="card span-6">
+      <div class="meta">agent platform</div>
+      <h3>Giving teams primitives they can shape around their own use cases.</h3>
+      <p>
+        The web platform is designed around a simple idea: different teams need different kinds of AI behaviour. Rather than prescribing one
+        fixed workflow, the platform provides composable capabilities such as context, reusable skills and human-in-the-loop controls that
+        teams can combine around their own use cases.
+      </p>
+      <p style="margin-top:12px">
+        Working on a platform like this means constantly balancing abstraction and flexibility. Too little structure and every team has to
+        solve the same problems again. Too much structure and the platform stops fitting the workflows it was meant to support.
+      </p>
+      <p style="margin-top:12px">
+        My work spans feature development, defect resolution, UX feedback and validation, but also the product conversations around
+        <strong>which capabilities should become reusable platform primitives, how much configurability users need, and where human oversight should remain part of the experience.</strong>
+      </p>
+      <p style="margin-top:12px">
+        I work with users, engineering, QA, DevOps and UX throughout that cycle — from requirement refinement and technical feasibility through validation and rollout.
+      </p>
+      <div class="tagrow">
+        <span class="tag">platform thinking</span><span class="tag">agentic AI</span>
+        <span class="tag">HITL</span><span class="tag">configurability</span><span class="tag">UX collaboration</span>
+      </div>
+    </article>
+
+    <article class="card span-6">
+      <div class="meta">AI developer CLI</div>
+      <h3>Bringing AI into the developer workflow, not beside it.</h3>
+      <p>
+        The second product is a company-wide AI CLI used by roughly <strong>1,200 developers</strong>. I contribute to capabilities such as
+        pre-built skills, custom skills and memory, designed to let developers adapt the tool to their own workflow rather than repeatedly
+        recreating context and behaviour.
+      </p>
+      <p style="margin-top:12px">
+        A developer tool creates a different kind of product discipline. Every extra interaction is noticeable. Unpredictability quickly
+        erodes trust. Power matters, but so does staying out of the user's way.
+      </p>
+      <p style="margin-top:12px">
+        That means the experience has to feel fast, composable and predictable enough to become part of how someone already works. I bring
+        feedback from users and hands-on product use into feature discussions and prioritization, while working across engineering and
+        validation to make sure those ideas survive contact with the actual system.
+      </p>
+      <div class="metric-strip">
+        <div class="metric"><strong>~1,200</strong><span>users</span></div>
+        <div class="metric"><strong>company-wide</strong><span>availability</span></div>
+        <div class="metric"><strong>reusable</strong><span>skills + memory</span></div>
+      </div>
+      <div class="tagrow">
+        <span class="tag">developer experience</span><span class="tag">CLI</span>
+        <span class="tag">skills</span><span class="tag">memory</span><span class="tag">AI workflows</span>
+      </div>
+    </article>
+
+    <article class="card sticky span-6">
+      <div class="meta">product shaping · collaboration</div>
+      <h3>I don’t just receive a requirement and disappear into implementation.</h3>
+      <p>
+        A large part of my work happens before and around the code. I contribute to <strong>feature discussions, backlog refinement,
+        prioritization and technical scoping</strong>, where we weigh user impact, defects, dependencies, engineering effort and product readiness
+        to decide what should move forward, what belongs in a release, and what needs another iteration.
+      </p>
+      <p style="margin-top:12px">
+        From there, I work across <strong>engineering, QA, DevOps, UX and direct users</strong> to carry that context through implementation.
+        That can mean refining requirements with a user, working through feasibility with engineering, validating behaviour with QA,
+        coordinating infrastructure dependencies with DevOps, reviewing workflow changes with UX, or bringing post-release feedback back
+        into the next backlog discussion.
+      </p>
+      <p style="margin-top:12px">
+        I also mentor interns across requirements, scoping, implementation, reviews, debugging and QA, including helping several ideas progress
+        into a separate trial prototype.
+      </p>
+      <p style="margin-top:14px"><strong>listen → frame → prioritize → scope → build → validate → release → learn</strong></p>
+      <div class="tagrow">
+        <span class="tag">backlog</span><span class="tag">prioritization</span><span class="tag">requirements</span>
+        <span class="tag">technical scoping</span><span class="tag">release readiness</span><span class="tag">cross-functional</span>
+      </div>
+    </article>
+
+    <article class="card span-12">
+      <div class="meta">0→1 product · BloodNet</div>
+      <h3>Reframing emergency blood availability as a coordination problem.</h3>
+      <p>
+        BloodNet started with a deceptively simple question: if someone urgently needs blood, why is the problem treated primarily as
+        <em>finding a donor</em>? Availability actually depends on several moving parts — existing inventory, compatibility, location,
+        donor responsiveness, urgency, approvals and regional supply.
+      </p>
+      <p style="margin-top:12px">
+        So I reframed the problem around <strong>coordinating the fastest reliable path to fulfillment</strong> and designed the product around the
+        critical loop: <strong>request → inventory → shortfall → approval → donor mobilization → resolution.</strong>
+      </p>
+      <p style="margin-top:12px">
+        AI and ML support extraction, ranking, forecasting and investigation, while consequential inventory and fulfillment actions remain
+        human-approved. The product spans multiple stakeholder journeys across hospitals, blood banks, donors and regional operations, and
+        extends beyond reactive matching through <strong>Blood Weather</strong>, which forecasts potential regional shortages before they become emergency requests.
+      </p>
+      <p style="margin-top:12px">
+        The product also changed through user feedback. When early users struggled to understand a login-first experience, I redesigned the
+        entry journey around a public regional dashboard that explains the system before asking users to enter it. Follow-up testing showed
+        substantially clearer comprehension.
+      </p>
+      <div class="metric-strip achievement-strip">
+        <div class="metric achievement-metric">
+          <strong>#36</strong>
+          <span class="metric-title">Google Patchamomma 2026</span>
+          <span class="metric-sub">ranked among ~3K initially shortlisted</span>
+        </div>
+      </div>
+      <div class="tagrow">
+        <span class="tag">0→1</span><span class="tag">product discovery</span><span class="tag">systems thinking</span>
+        <span class="tag">AI / ML</span><span class="tag">healthcare</span><span class="tag">user research</span>
+      </div>
+      <a class="arrow-link" href="case-studies.html#bloodnet">read the full product story →</a>
+    </article>
+  </section>
+
+  <div class="section-title">
+    <h2>The thread through it all</h2>
+  </div>
+
+  <section class="process">
+    <div class="step"><span>1</span><b>Engineering taught me to respect the system.</b>Ideas eventually meet architecture, dependencies, reliability, latency, cost and technical debt. Understanding those constraints helps me reason about what a product can realistically promise.</div>
+    <div class="step"><span>2</span><b>AI made product trade-offs unusually visible.</b>Capability, quality, latency, cost, autonomy and trust rarely move in the same direction. Designing AI products means deciding which trade-off matters for which user and which workflow.</div>
+    <div class="step"><span>3</span><b>Users make the problem sharper.</b>Demos, support conversations, workflow feedback and hands-on observation often reveal something a technical specification cannot: where people hesitate, what they misunderstand, and what actually matters to them.</div>
+    <div class="step"><span>4</span><b>Collaboration turns those signals into something shippable.</b>The strongest outcomes come from combining user context, engineering feasibility, UX, quality, infrastructure and business constraints — and giving everyone enough shared context to make the decision together.</div>
+  </section>
+
+  <footer class="footer">
+    <div class="hand">still building. increasingly interested in why we build it that way.</div>
+    <a class="button" href="case-studies.html">next: case studies →</a>
+  </footer>
+</div>
+</body>
+</html>
