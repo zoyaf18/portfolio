@@ -1,6 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><meta name="theme-color" content="#EECBD0"><title>Zoya Fatima: Product Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Sans:wght@400;500;700&family=Instrument+Serif&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" sizes="128x128" href="favicon.png">
 <style>
 :root{--bg:#EECBD0;--deep:#B5485A;--paper:#FFFDFB;--ink:#2B2626;--lime:#FFFDFB;--rose:#F6DADD;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -340,6 +339,13 @@ html{color-scheme:light}
   #w-resume .resume-career-dates{gap:3px}
 }
 
+/* Short-resume education: compact and consistent with work and recognition. */
+#w-resume .resume-education{padding:11px 0 12px}
+#w-resume .resume-education-line{display:flex;align-items:baseline;justify-content:space-between;gap:4px 12px;flex-wrap:wrap;margin:7px 0 2px}
+#w-resume .resume-education-line strong{font-size:13.6px;line-height:1.4}
+#w-resume .resume-education-line time{font-size:11.5px;opacity:.68;white-space:nowrap}
+#w-resume .resume-education p{font-size:12.9px;line-height:1.5;margin:0;opacity:.82}
+
 /* About Me — understated editorial hierarchy, no changes to the text. */
 #w-about .about-body{padding:20px 25px 23px}
 #w-about .about-heading{font-size:24px;line-height:1.08;margin:0 0 18px}
@@ -449,6 +455,10 @@ html{color-scheme:light}
     </div>
   </div>
   <p>Contribute to an AI agent-building web platform (~1,800 users) and developer CLI (~1,200 users), working with users, engineering, UX/Design, QA and DevOps on features, priorities and releases.</p>
+</div>
+<div class="job resume-education"><b>Education</b>
+  <div class="resume-education-line"><strong>Vellore Institute of Technology, Bhopal</strong><time>2020 – 2024</time></div>
+  <p>B.Tech, Computer Science &amp; Engineering</p>
 </div>
 <div class="job resume-impact"><b>Recognition</b><ul>
   <li><strong>Google Patchamomma 2026:</strong> Rank <strong>#36</strong>, from an initial shortlist of ~3,000 participants.</li>
