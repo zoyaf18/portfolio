@@ -525,7 +525,7 @@ html{color-scheme:light}
 <script>
 const $=s=>document.querySelector(s);
 let z=10;
-const PAGES={exp:'work-rewritten-v5.html',work:'case-studies.html'};
+const PAGES={exp:'work.html',work:'case-studies.html'};
 function open(id){if(PAGES[id]){location.href=PAGES[id];return}if(id=='mug'){toast(['refilled. productivity +12%','third cup. the roadmap is clearer now.','decaf? never heard of it.'][Math.floor(Math.random()*3)]);return}
 const w=$('#w-'+id);w.classList.add('on');w.style.zIndex=++z}
 document.querySelectorAll('.hot').forEach(h=>{h.onclick=()=>open(h.dataset.w);h.onkeydown=e=>(e.key=='Enter'||e.key==' ')&&(e.preventDefault(),open(h.dataset.w))});
