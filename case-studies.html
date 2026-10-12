@@ -23,9 +23,9 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--deep);outline-offse
 ::selection{background:var(--rose2)}
 .page{width:min(1160px,calc(100% - 36px));margin:0 auto;padding:20px 0 70px}
 .topbar{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 13px 10px 19px;margin-bottom:57px;background:rgba(255,253,251,.96);border:1.5px solid var(--ink);border-radius:999px;box-shadow:3px 3px 0 var(--ink)}
-.brand{font:400 25px 'Instrument Serif',serif;text-decoration:none;letter-spacing:-.02em}
+.brand{font:normal 400 30px/1 'Instrument Serif',serif;text-decoration:none;letter-spacing:-.02em}
 .nav{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
-.nav a{font-weight:700;font-size:12px;text-decoration:none;border:1.5px solid transparent;border-radius:999px;padding:6px 12px;letter-spacing:-.01em}
+.nav a{font-weight:700;font-size:13px;text-decoration:none;border:1.5px solid transparent;border-radius:999px;padding:6px 12px;letter-spacing:-.01em}
 .nav a:hover,.nav a.active{border-color:var(--ink);background:var(--rose)}
 .eyebrow,.smallcaps{font-size:11px;letter-spacing:.105em;font-weight:700;text-transform:uppercase}
 .eyebrow{display:inline-block;border:1.5px solid var(--ink);background:var(--paper);border-radius:999px;padding:6px 12px;box-shadow:2px 2px 0 var(--ink)}
@@ -332,6 +332,11 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--deep);outline-offse
 .deck-embed.is-expanded,.idea>.deck-embed.is-expanded{inset:auto!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;width:min(94vw,calc((100dvh - 152px)*16/9 + 40px))!important;height:auto!important;max-height:96dvh!important;min-height:0!important}
 .deck-embed.is-expanded .deck-window{aspect-ratio:16/9!important;flex:none!important;height:auto!important;width:100%!important;min-height:0!important;border-radius:10px}
 @media (max-width:700px){.deck-embed.is-expanded,.idea>.deck-embed.is-expanded{inset:auto!important;left:50%!important;top:50%!important;width:calc(100vw - 14px)!important;height:auto!important;max-height:96dvh!important;border:2px solid #2b2626!important;border-radius:14px!important;padding:12px 12px 10px!important;box-shadow:6px 6px 0 #2b262677!important}.deck-embed.is-expanded .deck-window{container-type:normal;overflow:hidden!important}}
+</style><style id="shared-header">/* shared header: identical "Zoya." wordmark + tab sizing on Work and Case Studies */
+.topbar{-webkit-font-smoothing:antialiased}
+.nav a{line-height:1.5}
+@media(min-width:601px){.page{width:min(1160px,calc(100% - 32px));padding-top:22px}}
+@media(min-width:601px) and (max-width:650px){.topbar{padding:10px 13px 10px 19px;border-radius:999px;align-items:center;flex-direction:row;gap:16px;margin-bottom:57px}.brand{font-size:30px}.nav{width:auto;justify-content:flex-end;gap:5px}.nav a{font-size:13px;padding:6px 12px}}
 </style></head>
 <body>
 <div class="page">
